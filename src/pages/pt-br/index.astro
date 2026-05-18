@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const hreflang = [
+  { lang: 'en', url: 'https://matrixdestiny.co/' },
+  { lang: 'pt-BR', url: 'https://matrixdestiny.co/pt-br/' },
+  { lang: 'uk', url: 'https://matrixdestiny.co/uk/' },
+];
+---
+
+<Base
+  title="Calculadora Matriz do Destino — Leitura Gratuita do Mapa"
+  description="Calcule sua Matriz do Destino gratuita pela data de nascimento. Entenda seus padrões kármicos, arquétipos, compatibilidade e propósito de vida com precisão psicológica."
+  lang="pt-BR"
+  hreflang={hreflang}
+>
+  <Header lang="pt-br" />
+
+  <main class="max-w-5xl mx-auto px-6 py-16">
+    <h1 class="text-4xl font-bold tracking-tight mb-4">
+      Matriz do Destino — Entenda Seus Padrões, Não Apenas Sua Data
+    </h1>
+    <p class="text-lg text-gray-600 mb-8 max-w-2xl">
+      Insira sua data de nascimento para gerar sua Matriz do Destino gratuita.
+      Compreenda suas posições arcanas, padrões kármicos, energia de compatibilidade e propósito de vida.
+    </p>
+
+    <div class="bg-gray-50 border border-gray-200 rounded-xl p-8 mb-16 max-w-md">
+      <p class="text-sm text-gray-500 mb-2">Calculadora em breve</p>
+      <h2 class="text-xl font-semibold">Insira sua data de nascimento</h2>
+    </div>
+
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">Explorar os 22 Arcanos</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {Array.from({ length: 22 }, (_, i) => i + 1).map((n) => (
+          <a
+            href={`/pt-br/arcana/${n}`}
+            class="border border-gray-200 rounded-lg p-4 text-center hover:border-purple-400 hover:bg-purple-50 transition-colors"
+          >
+            <span class="text-2xl font-bold text-purple-600">{n}</span>
+            <p class="text-sm text-gray-600 mt-1">Arcano {n}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <Footer lang="pt-br" />
+</Base>
