@@ -1,11 +1,14 @@
 ---
-const { 
-  title, 
-  description, 
+import '../styles/global.css';
+
+const {
+  title,
+  description,
   lang = 'en',
   hreflang = []
 } = Astro.props;
 ---
+
 <!DOCTYPE html>
 <html lang={lang}>
 <head>
@@ -14,13 +17,10 @@ const {
   <meta name="description" content={description} />
   <title>{title}</title>
   <link rel="canonical" href={Astro.url.href} />
-
-  <!-- Hreflang tags for multilingual SEO -->
   {hreflang.map((h: { lang: string; url: string }) => (
     <link rel="alternate" hreflang={h.lang} href={h.url} />
   ))}
   <link rel="alternate" hreflang="x-default" href="https://matrixdestiny.co/" />
-  <slot name="head" />
 </head>
 <body class="bg-white text-gray-900 font-sans">
   <slot />
