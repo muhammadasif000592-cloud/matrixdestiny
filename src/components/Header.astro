@@ -1,0 +1,29 @@
+---
+const { lang = 'en' } = Astro.props;
+
+const nav = {
+  en: { home: '/', calculator: '/calculator', arcana: '/arcana' },
+  'pt-br': { home: '/pt-br', calculator: '/pt-br/calculadora', arcana: '/pt-br/arcana' },
+  uk: { home: '/uk', calculator: '/uk/kalkulyator', arcana: '/uk/arkan' },
+};
+
+const labels = {
+  en: { home: 'Home', calculator: 'Calculator', arcana: 'Arcana' },
+  'pt-br': { home: 'Início', calculator: 'Calculadora', arcana: 'Arcanos' },
+  uk: { home: 'Головна', calculator: 'Калькулятор', arcana: 'Аркани' },
+};
+
+const links = nav[lang] ?? nav.en;
+const text = labels[lang] ?? labels.en;
+---
+
+<header class="w-full border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+  <a href={links.home} class="text-xl font-bold tracking-tight">
+    Matrix Destiny
+  </a>
+  <nav class="flex gap-6 text-sm">
+    <a href={links.home} class="hover:text-purple-600 transition-colors">{text.home}</a>
+    <a href={links.calculator} class="hover:text-purple-600 transition-colors">{text.calculator}</a>
+    <a href={links.arcana} class="hover:text-purple-600 transition-colors">{text.arcana}</a>
+  </nav>
+</header>

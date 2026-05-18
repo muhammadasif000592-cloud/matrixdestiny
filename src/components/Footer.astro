@@ -1,0 +1,21 @@
+---
+const { lang = 'en' } = Astro.props;
+
+const labels = {
+  en: { rights: 'All rights reserved.', privacy: 'Privacy Policy', terms: 'Terms of Use' },
+  'pt-br': { rights: 'Todos os direitos reservados.', privacy: 'Política de Privacidade', terms: 'Termos de Uso' },
+  uk: { rights: 'Усі права захищені.', privacy: 'Політика конфіденційності', terms: 'Умови використання' },
+};
+
+const text = labels[lang] ?? labels.en;
+---
+
+<footer class="w-full border-t border-gray-200 px-6 py-8 mt-16">
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+    <p>© {new Date().getFullYear()} matrixdestiny.co — {text.rights}</p>
+    <nav class="flex gap-6">
+      <a href="/privacy" class="hover:text-purple-600 transition-colors">{text.privacy}</a>
+      <a href="/terms" class="hover:text-purple-600 transition-colors">{text.terms}</a>
+    </nav>
+  </div>
+</footer>

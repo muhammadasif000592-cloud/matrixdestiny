@@ -1,17 +1,52 @@
 ---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
+const hreflang = [
+  { lang: 'en', url: 'https://matrixdestiny.co/' },
+  { lang: 'pt-BR', url: 'https://matrixdestiny.co/pt-br/' },
+  { lang: 'uk', url: 'https://matrixdestiny.co/uk/' },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base
+  title="Matrix of Destiny Calculator — Free Chart Reading"
+  description="Calculate your free Matrix of Destiny chart by birth date. Understand your arcana, karmic patterns, compatibility and life purpose."
+  lang="en"
+  hreflang={hreflang}
+>
+  <Header lang="en" />
+
+  <main class="max-w-5xl mx-auto px-6 py-16">
+    <h1 class="text-4xl font-bold tracking-tight mb-4">
+      Matrix of Destiny Calculator
+    </h1>
+    <p class="text-lg text-gray-600 mb-8 max-w-2xl">
+      Enter your birth date to generate your free Matrix of Destiny chart.
+      Understand your arcana positions, karmic tail, compatibility energy and life purpose.
+    </p>
+
+    <div class="bg-gray-50 border border-gray-200 rounded-xl p-8 mb-16 max-w-md">
+      <p class="text-sm text-gray-500 mb-2">Calculator coming soon</p>
+      <h2 class="text-xl font-semibold">Enter your birth date</h2>
+    </div>
+
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">Explore the 22 Arcana</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {Array.from({ length: 22 }, (_, i) => i + 1).map((n) => (
+          <a
+            href={`/arcana/${n}`}
+            class="border border-gray-200 rounded-lg p-4 text-center hover:border-purple-400 hover:bg-purple-50 transition-colors"
+          >
+            <span class="text-2xl font-bold text-purple-600">{n}</span>
+            <p class="text-sm text-gray-600 mt-1">Arcana {n}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <Footer lang="en" />
+</Base>
