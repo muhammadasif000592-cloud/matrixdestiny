@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Calculator from '../components/Calculator.astro';
 
 const hreflang = [
   { lang: 'en', url: 'https://matrixdestiny.co/' },
@@ -28,8 +29,7 @@ const hreflang = [
     </p>
 
     <div class="bg-gray-50 border border-gray-200 rounded-xl p-8 mb-16 max-w-md">
-      <p class="text-sm text-gray-500 mb-2">Calculator coming soon</p>
-      <h2 class="text-xl font-semibold">Enter your birth date</h2>
+      <Calculator lang="en" />
     </div>
 
     <section class="mb-16">

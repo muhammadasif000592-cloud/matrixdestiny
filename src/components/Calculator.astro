@@ -1,0 +1,269 @@
+---
+const { lang = 'en' } = Astro.props;
+
+const arcanaBase = {
+  en: '/arcana',
+  'pt-br': '/pt-br/arcana',
+  uk: '/uk/arcana',
+}[lang] ?? '/arcana';
+
+const t = {
+  en: {
+    day: 'Day', month: 'Month', year: 'Year',
+    calculate: 'Calculate',
+    result: 'Your Matrix of Destiny',
+    posA: 'Day', posB: 'Month', posC: 'Year', posD: 'Sum', posE: 'Center',
+    error: 'Enter a valid date — day 1–31, month 1–12, year 1900–2099.',
+  },
+  'pt-br': {
+    day: 'Dia', month: 'Mês', year: 'Ano',
+    calculate: 'Calcular',
+    result: 'Sua Matriz do Destino',
+    posA: 'Dia', posB: 'Mês', posC: 'Ano', posD: 'Soma', posE: 'Centro',
+    error: 'Insira uma data válida — dia 1–31, mês 1–12, ano 1900–2099.',
+  },
+  uk: {
+    day: 'День', month: 'Місяць', year: 'Рік',
+    calculate: 'Розрахувати',
+    result: 'Ваша Матриця Долі',
+    posA: 'День', posB: 'Місяць', posC: 'Рік', posD: 'Сума', posE: 'Центр',
+    error: 'Введіть дійсну дату — день 1–31, місяць 1–12, рік 1900–2099.',
+  },
+}[lang] ?? {
+  day: 'Day', month: 'Month', year: 'Year',
+  calculate: 'Calculate',
+  result: 'Your Matrix of Destiny',
+  posA: 'Day', posB: 'Month', posC: 'Year', posD: 'Sum', posE: 'Center',
+  error: 'Enter a valid date — day 1–31, month 1–12, year 1900–2099.',
+};
+---
+
+<div
+  class="calc-root"
+  data-arcana-base={arcanaBase}
+  data-pos-a={t.posA}
+  data-pos-b={t.posB}
+  data-pos-c={t.posC}
+  data-pos-d={t.posD}
+  data-pos-e={t.posE}
+>
+  <form class="calc-form flex flex-wrap items-end gap-3 mb-2" novalidate>
+    <div class="flex flex-col gap-1">
+      <label class="text-xs font-semibold uppercase tracking-wide text-gray-500">{t.day}</label>
+      <input
+        class="calc-day w-16 border border-gray-300 rounded-lg px-2 py-2 text-center text-lg font-bold focus:outline-none focus:ring-2 focus:ring-purple-400"
+        type="number" min="1" max="31" placeholder="DD" autocomplete="off"
+      />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="text-xs font-semibold uppercase tracking-wide text-gray-500">{t.month}</label>
+      <input
+        class="calc-month w-16 border border-gray-300 rounded-lg px-2 py-2 text-center text-lg font-bold focus:outline-none focus:ring-2 focus:ring-purple-400"
+        type="number" min="1" max="12" placeholder="MM" autocomplete="off"
+      />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="text-xs font-semibold uppercase tracking-wide text-gray-500">{t.year}</label>
+      <input
+        class="calc-year w-24 border border-gray-300 rounded-lg px-2 py-2 text-center text-lg font-bold focus:outline-none focus:ring-2 focus:ring-purple-400"
+        type="number" min="1900" max="2099" placeholder="YYYY" autocomplete="off"
+      />
+    </div>
+    <button
+      type="submit"
+      class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded-lg transition-colors"
+    >
+      {t.calculate}
+    </button>
+  </form>
+
+  <p class="calc-error hidden text-sm text-red-500 mt-2 mb-4">{t.error}</p>
+
+  <div class="calc-result hidden mt-8">
+    <h3 class="text-lg font-bold text-gray-800 mb-6">{t.result}</h3>
+    <div class="matrix-grid"></div>
+  </div>
+</div>
+
+<style>
+  .matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 6px;
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1;
+  }
+
+  .m-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+
+  .m-cell:hover {
+    transform: scale(1.06);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+    z-index: 1;
+    position: relative;
+  }
+
+  .m-cell .num {
+    font-size: clamp(1rem, 4vw, 1.35rem);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .m-cell .lbl {
+    font-size: clamp(0.45rem, 1.2vw, 0.58rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.65;
+    margin-top: 3px;
+    text-align: center;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .m-day    { background: #dbeafe; color: #1d4ed8; }
+  .m-month  { background: #dcfce7; color: #15803d; }
+  .m-year   { background: #ffedd5; color: #c2410c; }
+  .m-sum    { background: #fce7f3; color: #be185d; }
+  .m-center { background: #fef9c3; color: #92400e; box-shadow: 0 0 0 2px #fbbf24; }
+  .m-mid    { background: #ede9fe; color: #6d28d9; }
+</style>
+
+<script>
+  function reduce(n: number): number {
+    while (n > 22) {
+      n = String(n).split('').reduce((s, d) => s + parseInt(d, 10), 0);
+    }
+    return n;
+  }
+
+  function calcMatrix(day: number, month: number, year: number) {
+    const A = reduce(day);
+    const B = month; // 1–12 are all valid arcana
+    const yearSum = String(year).split('').reduce((s, d) => s + parseInt(d, 10), 0);
+    const C = reduce(yearSum);
+    const D = reduce(A + B + C);
+    const E = reduce(A + B + C + D);
+    const AB = reduce(A + B);
+    const BC = reduce(B + C);
+    const CD = reduce(C + D);
+    const DA = reduce(D + A);
+    return { A, B, C, D, E, AB, BC, CD, DA };
+  }
+
+  function makeCell(
+    value: number,
+    label: string,
+    cls: string,
+    base: string,
+    row: number,
+    col: number
+  ): HTMLAnchorElement {
+    const a = document.createElement('a');
+    a.href = `${base}/${value}`;
+    a.className = `m-cell ${cls}`;
+    a.style.gridRow = String(row);
+    a.style.gridColumn = String(col);
+
+    const num = document.createElement('span');
+    num.className = 'num';
+    num.textContent = String(value);
+
+    a.appendChild(num);
+
+    if (label) {
+      const lbl = document.createElement('span');
+      lbl.className = 'lbl';
+      lbl.textContent = label;
+      a.appendChild(lbl);
+    }
+
+    return a;
+  }
+
+  function renderMatrix(
+    matrix: ReturnType<typeof calcMatrix>,
+    wrapper: HTMLElement
+  ) {
+    const base = wrapper.dataset.arcanaBase ?? '/arcana';
+    const pA = wrapper.dataset.posA ?? '';
+    const pB = wrapper.dataset.posB ?? '';
+    const pC = wrapper.dataset.posC ?? '';
+    const pD = wrapper.dataset.posD ?? '';
+    const pE = wrapper.dataset.posE ?? '';
+
+    const grid = wrapper.querySelector<HTMLElement>('.matrix-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    // Diamond layout on a 5×5 grid (row, col — 1-indexed)
+    //         A (1,3)
+    //      DA (2,2)  AB (2,4)
+    //   D (3,1)  E (3,3)  B (3,5)
+    //      CD (4,2)  BC (4,4)
+    //         C (5,3)
+    const positions = [
+      { key: 'A',  row: 1, col: 3, label: pA, cls: 'm-day'    },
+      { key: 'DA', row: 2, col: 2, label: '',  cls: 'm-mid'    },
+      { key: 'AB', row: 2, col: 4, label: '',  cls: 'm-mid'    },
+      { key: 'D',  row: 3, col: 1, label: pD, cls: 'm-sum'    },
+      { key: 'E',  row: 3, col: 3, label: pE, cls: 'm-center' },
+      { key: 'B',  row: 3, col: 5, label: pB, cls: 'm-month'  },
+      { key: 'CD', row: 4, col: 2, label: '',  cls: 'm-mid'    },
+      { key: 'BC', row: 4, col: 4, label: '',  cls: 'm-mid'    },
+      { key: 'C',  row: 5, col: 3, label: pC, cls: 'm-year'   },
+    ] as const;
+
+    for (const pos of positions) {
+      const value = matrix[pos.key as keyof typeof matrix];
+      grid.appendChild(makeCell(value, pos.label, pos.cls, base, pos.row, pos.col));
+    }
+  }
+
+  function initCalculator(wrapper: HTMLElement) {
+    const form = wrapper.querySelector<HTMLFormElement>('.calc-form');
+    const errorEl = wrapper.querySelector<HTMLElement>('.calc-error');
+    const resultEl = wrapper.querySelector<HTMLElement>('.calc-result');
+    if (!form || !errorEl || !resultEl) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const day   = parseInt((wrapper.querySelector('.calc-day')   as HTMLInputElement).value, 10);
+      const month = parseInt((wrapper.querySelector('.calc-month') as HTMLInputElement).value, 10);
+      const year  = parseInt((wrapper.querySelector('.calc-year')  as HTMLInputElement).value, 10);
+
+      const valid =
+        !isNaN(day) && !isNaN(month) && !isNaN(year) &&
+        day >= 1 && day <= 31 &&
+        month >= 1 && month <= 12 &&
+        year >= 1900 && year <= 2099;
+
+      if (!valid) {
+        errorEl.classList.remove('hidden');
+        resultEl.classList.add('hidden');
+        return;
+      }
+
+      errorEl.classList.add('hidden');
+      const matrix = calcMatrix(day, month, year);
+      renderMatrix(matrix, wrapper);
+      resultEl.classList.remove('hidden');
+      resultEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('.calc-root').forEach(initCalculator);
+</script>
