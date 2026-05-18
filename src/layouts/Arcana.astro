@@ -1,0 +1,330 @@
+---
+import Base from './Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface FAQItem {
+  q: string;
+  a: string;
+}
+
+interface Relationships {
+  isA: string;
+  usedFor: string[];
+  worksWith: number[];
+  conflictsWith: number[];
+  causes: string[];
+}
+
+interface Props {
+  number: number;
+  name: string;
+  title: string;
+  description: string;
+  lang: 'en' | 'pt-br' | 'uk';
+  relationships: Relationships;
+  faq: FAQItem[];
+  canonicalUrl: string;
+  hreflang: { lang: string; url: string }[];
+}
+
+const { number, name, title, description, lang, relationships, faq, canonicalUrl, hreflang } =
+  Astro.props;
+
+// ── Locale-aware URLs ─────────────────────────────────────────────────────────
+const homeUrls = { en: '/', 'pt-br': '/pt-br/', uk: '/uk/' };
+const calculatorUrls = { en: '/calculator', 'pt-br': '/pt-br/calculadora', uk: '/uk/kalkulyator' };
+// List pages as defined in Header.astro nav
+const arcanaListUrls = { en: '/arcana', 'pt-br': '/pt-br/arcana', uk: '/uk/arkan' };
+// Base path for individual arcana pages (matches dynamic route folder)
+const arcanaBaseUrls = { en: '/arcana', 'pt-br': '/pt-br/arcana', uk: '/uk/arcana' };
+
+const homeUrl = homeUrls[lang];
+const calcUrl = calculatorUrls[lang];
+const listUrl = arcanaListUrls[lang];
+const arcBase = arcanaBaseUrls[lang];
+
+const prevNum = number > 1 ? number - 1 : 22;
+const nextNum = number < 22 ? number + 1 : 1;
+
+// ── Locale labels ─────────────────────────────────────────────────────────────
+const labels = {
+  en: {
+    breadcrumbHome: 'Home',
+    breadcrumbArcana: 'Arcana',
+    entityTitle: 'Entity Relationships',
+    isA: 'IS-A',
+    usedFor: 'USED-FOR',
+    worksWith: 'WORKS-WITH',
+    conflictsWith: 'CONFLICTS-WITH',
+    causes: 'CAUSES',
+    arcanaLabel: 'Arcana',
+    faqTitle: 'Frequently Asked Questions',
+    prevLabel: 'Arcana',
+    nextLabel: 'Arcana',
+    allArcana: 'All Arcana',
+    ctaSubtitle: 'See this arcana in your own chart',
+    ctaButton: 'Calculate Your Matrix',
+  },
+  'pt-br': {
+    breadcrumbHome: 'Início',
+    breadcrumbArcana: 'Arcanos',
+    entityTitle: 'Relações de Entidade',
+    isA: 'É UM(A)',
+    usedFor: 'USADO PARA',
+    worksWith: 'FUNCIONA COM',
+    conflictsWith: 'CONFLITA COM',
+    causes: 'CAUSA',
+    arcanaLabel: 'Arcano',
+    faqTitle: 'Perguntas Frequentes',
+    prevLabel: 'Arcano',
+    nextLabel: 'Arcano',
+    allArcana: 'Todos os Arcanos',
+    ctaSubtitle: 'Veja este arcano no seu mapa',
+    ctaButton: 'Calcule sua Matriz',
+  },
+  uk: {
+    breadcrumbHome: 'Головна',
+    breadcrumbArcana: 'Аркани',
+    entityTitle: "Зв'язки сутності",
+    isA: 'Є',
+    usedFor: 'ВИКОРИСТОВУЄТЬСЯ ДЛЯ',
+    worksWith: 'ВЗАЄМОДІЄ З',
+    conflictsWith: 'КОНФЛІКТУЄ З',
+    causes: 'СПРИЧИНЯЄ',
+    arcanaLabel: 'Аркан',
+    faqTitle: 'Часті запитання',
+    prevLabel: 'Аркан',
+    nextLabel: 'Аркан',
+    allArcana: 'Всі Аркани',
+    ctaSubtitle: 'Побачте цей аркан у своїй карті',
+    ctaButton: 'Розрахуйте свою Матрицю',
+  },
+};
+
+const L = labels[lang];
+const htmlLang = lang === 'pt-br' ? 'pt-BR' : lang;
+
+// ── Structured data ───────────────────────────────────────────────────────────
+const articleSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description,
+  url: canonicalUrl,
+  inLanguage: htmlLang,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Matrix Destiny',
+    url: 'https://matrixdestiny.co',
+  },
+});
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+});
+
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: L.breadcrumbHome, item: `https://matrixdestiny.co${homeUrl}` },
+    { '@type': 'ListItem', position: 2, name: L.breadcrumbArcana, item: `https://matrixdestiny.co${listUrl}` },
+    { '@type': 'ListItem', position: 3, name: `${L.arcanaLabel} ${number} — ${name}`, item: canonicalUrl },
+  ],
+});
+---
+
+<Base title={title} description={description} lang={lang} hreflang={hreflang}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={articleSchema} />
+    <script type="application/ld+json" set:html={faqSchema} />
+    <script type="application/ld+json" set:html={breadcrumbSchema} />
+  </Fragment>
+
+  <Header lang={lang} />
+
+  <main class="max-w-3xl mx-auto px-6 py-12">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="flex items-center gap-2 text-sm text-gray-500 mb-8">
+      <a href={homeUrl} class="hover:text-purple-600 transition-colors">{L.breadcrumbHome}</a>
+      <span aria-hidden="true">›</span>
+      <a href={listUrl} class="hover:text-purple-600 transition-colors">{L.breadcrumbArcana}</a>
+      <span aria-hidden="true">›</span>
+      <span class="text-gray-800 font-medium">{number} — {name}</span>
+    </nav>
+
+    <!-- Page header -->
+    <header class="mb-10">
+      <div class="inline-flex items-center gap-2 bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">
+        {L.arcanaLabel} {number}
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-4 leading-tight">
+        {title}
+      </h1>
+      <p class="text-lg text-gray-500 leading-relaxed">{description}</p>
+    </header>
+
+    <!-- Prose content (slot from content file) -->
+    <article
+      class="mb-14 text-gray-700 leading-relaxed space-y-5
+        [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-gray-900 [&_h2]:mt-10 [&_h2]:mb-3
+        [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-gray-900 [&_h3]:mt-6 [&_h3]:mb-2
+        [&_p]:mb-0
+        [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1
+        [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-1
+        [&_strong]:font-semibold [&_strong]:text-gray-900
+        [&_table]:w-full [&_table]:border-collapse [&_table]:text-sm [&_table]:my-4
+        [&_th]:text-left [&_th]:font-semibold [&_th]:bg-gray-50 [&_th]:px-4 [&_th]:py-2 [&_th]:border [&_th]:border-gray-200
+        [&_td]:px-4 [&_td]:py-2 [&_td]:border [&_td]:border-gray-200 [&_td]:align-top"
+    >
+      <slot />
+    </article>
+
+    <!-- Entity relationship table -->
+    <section class="mb-12" aria-label={L.entityTitle}>
+      <h2 class="text-xl font-bold text-gray-900 mb-4">{L.entityTitle}</h2>
+      <div class="border border-gray-200 rounded-xl overflow-hidden">
+        <table class="w-full text-sm">
+          <tbody>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 w-36 align-top pt-4">
+                {L.isA}
+              </td>
+              <td class="px-5 py-3 text-gray-700 leading-relaxed">{relationships.isA}</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 align-top pt-4">
+                {L.usedFor}
+              </td>
+              <td class="px-5 py-3 text-gray-700">
+                <ul class="space-y-1 list-disc list-inside">
+                  {relationships.usedFor.map((item) => <li>{item}</li>)}
+                </ul>
+              </td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 align-top pt-4">
+                {L.worksWith}
+              </td>
+              <td class="px-5 py-3">
+                <div class="flex flex-wrap gap-2">
+                  {relationships.worksWith.map((n) => (
+                    <a
+                      href={`${arcBase}/${n}`}
+                      class="bg-purple-50 border border-purple-200 text-purple-700 text-xs font-medium px-2.5 py-1 rounded-lg hover:bg-purple-100 transition-colors"
+                    >
+                      {L.arcanaLabel} {n}
+                    </a>
+                  ))}
+                </div>
+              </td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 align-top pt-4">
+                {L.conflictsWith}
+              </td>
+              <td class="px-5 py-3">
+                <div class="flex flex-wrap gap-2">
+                  {relationships.conflictsWith.map((n) => (
+                    <a
+                      href={`${arcBase}/${n}`}
+                      class="bg-red-50 border border-red-200 text-red-700 text-xs font-medium px-2.5 py-1 rounded-lg hover:bg-red-100 transition-colors"
+                    >
+                      {L.arcanaLabel} {n}
+                    </a>
+                  ))}
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 align-top pt-4">
+                {L.causes}
+              </td>
+              <td class="px-5 py-3 text-gray-700">
+                <ul class="space-y-1 list-disc list-inside">
+                  {relationships.causes.map((item) => <li>{item}</li>)}
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FAQ block -->
+    <section class="mb-12" aria-label={L.faqTitle}>
+      <h2 class="text-xl font-bold text-gray-900 mb-6">{L.faqTitle}</h2>
+      <div class="space-y-4">
+        {faq.map((item) => (
+          <details class="group border border-gray-200 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-medium text-gray-900 hover:bg-gray-50 transition-colors list-none">
+              <span>{item.q}</span>
+              <svg
+                class="w-4 h-4 text-gray-400 shrink-0 ml-4 group-open:rotate-180 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-5 pt-1 text-gray-600 leading-relaxed text-sm border-t border-gray-100">
+              {item.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Sibling navigation -->
+    <nav
+      aria-label="Arcana navigation"
+      class="flex items-center justify-between py-6 border-t border-b border-gray-200 mb-10 text-sm"
+    >
+      <a
+        href={`${arcBase}/${prevNum}`}
+        class="flex items-center gap-1.5 text-gray-500 hover:text-purple-600 transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+        {L.prevLabel} {prevNum}
+      </a>
+      <a href={listUrl} class="text-gray-400 hover:text-purple-600 transition-colors">
+        {L.allArcana}
+      </a>
+      <a
+        href={`${arcBase}/${nextNum}`}
+        class="flex items-center gap-1.5 text-gray-500 hover:text-purple-600 transition-colors"
+      >
+        {L.nextLabel} {nextNum}
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </nav>
+
+    <!-- Calculator CTA -->
+    <div class="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-2xl p-8 text-center">
+      <p class="text-sm text-purple-600 font-medium mb-2">{L.ctaSubtitle}</p>
+      <a
+        href={calcUrl}
+        class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-xl text-sm transition-colors"
+      >
+        {L.ctaButton}
+      </a>
+    </div>
+
+  </main>
+
+  <Footer lang={lang} />
+</Base>
