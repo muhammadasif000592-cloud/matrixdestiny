@@ -41,7 +41,7 @@ const faq = [
   },
   {
     q: 'Qual posição é mais importante para compatibilidade em relacionamentos afetivos?',
-    a: 'O eixo A-B (ação e campo social) tende a ser o mais relevante para compatibilidade afetiva, porque é onde ocorre a maior parte da interação cotidiana — como cada pessoa age e como opera no campo compartilhado. O eixo C (condicionamentos profundos) é relevante para compatibilidade de longo prazo — é onde padrões de apego e de resposta emocional profunda ficam mapeados. A posição E (centro) de cada pessoa indica o estado de integração mais profundo — quando ambos os centros se complementam, há uma sensação de reconhecimento mútuo.',
+    a: 'O eixo A-B (ação e campo social) tende a ser o mais relevante para compatibilidade afetiva cotidiana. O eixo C (condicionamentos profundos) é decisivo para longo prazo — é onde padrões de apego e resposta emocional profunda estão mapeados e onde os conflitos mais difíceis de nomear ficam escondidos. A posição E (centro) indica o estado de integração mais profundo — quando ambos os centros se complementam, há uma sensação de reconhecimento mútuo que vai além da atração superficial.',
   },
   {
     q: 'Existe algum par de arcanos que indique relacionamento definitivamente incompatível?',
@@ -58,6 +58,10 @@ const faq = [
   {
     q: 'Como usar a análise de compatibilidade sem transformá-la em julgamento?',
     a: 'O risco principal em usar compatibilidade é confirmar narrativas preexistentes — usar o mapa para justificar o que já se quer acreditar sobre um relacionamento. A análise é mais útil quando abordada com curiosidade em vez de veredito: o que esse ponto de tensão está tentando mostrar? Qual padrão meu está contribuindo para esse atrito? A Matriz descreve tensões, não culpados.',
+  },
+  {
+    q: 'Como lidar com o bloqueio emocional que surge de conflitos estruturais na Matriz?',
+    a: 'O bloqueio emocional em conflitos estruturais ocorre quando o padrão de uma pessoa ativa automaticamente o mecanismo de defesa da outra — sem que nenhuma das duas consiga identificar o gatilho real. O primeiro passo é nomear o padrão: "quando você faz X, meu padrão Y é ativado." Isso transforma o conflito sem rosto em conflito com endereço. A análise de compatibilidade funciona como mapa — identifica onde esses gatilhos têm mais probabilidade de ocorrer. Com essa informação, o casal pode desenvolver linguagem compartilhada antes que o conflito escale.',
   },
 ];
 
@@ -115,8 +119,60 @@ const breadcrumbSchema = JSON.stringify({
       <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-4 leading-tight">
         Compatibilidade Matriz do Destino — O que os arcanos revelam sobre seus relacionamentos
       </h1>
+      <div class="mt-5 mb-4 space-y-1.5 text-base text-gray-600 italic leading-relaxed">
+        <p>Você sente que os mesmos conflitos de relacionamento kármico se repetem, independente do parceiro?</p>
+        <p>Que certos bloqueios emocionais voltam sempre que o relacionamento aprofunda?</p>
+        <p>Que algo no padrão do outro ativa em você uma reação que você mesmo não consegue explicar?</p>
+      </div>
       <p class="text-lg text-gray-500 leading-relaxed">{description}</p>
     </header>
+
+    <!-- Quick-answer block -->
+    <div class="mb-8 border-l-4 border-purple-500 bg-purple-50 rounded-r-xl overflow-hidden">
+      <div class="px-5 py-3 border-b border-purple-100">
+        <p class="text-xs font-semibold text-purple-700 uppercase tracking-wider">Respostas rápidas</p>
+      </div>
+      <table class="w-full text-sm">
+        <tbody>
+          <tr class="border-b border-purple-100">
+            <td class="px-5 py-2.5 font-medium text-gray-800 w-2/5 align-top">O que é?</td>
+            <td class="px-5 py-2.5 text-gray-700">Análise comparativa de dois mapas de Matriz do Destino nas 9 posições equivalentes</td>
+          </tr>
+          <tr class="border-b border-purple-100 bg-white/50">
+            <td class="px-5 py-2.5 font-medium text-gray-800 align-top">Como funciona?</td>
+            <td class="px-5 py-2.5 text-gray-700">Compara arcanos em posições equivalentes: sinergia, neutralidade ou conflito em cada eixo</td>
+          </tr>
+          <tr class="border-b border-purple-100">
+            <td class="px-5 py-2.5 font-medium text-gray-800 align-top">O que revela?</td>
+            <td class="px-5 py-2.5 text-gray-700">Onde os padrões se reforçam, onde criam atrito estrutural, o que exige trabalho consciente</td>
+          </tr>
+          <tr class="border-b border-purple-100 bg-white/50">
+            <td class="px-5 py-2.5 font-medium text-gray-800 align-top">Melhores combinações?</td>
+            <td class="px-5 py-2.5 text-gray-700">Arcanos 6+2, 14+2, 21+1 em posições B e C — alta sinergia nos campos social e de condicionamento</td>
+          </tr>
+          <tr class="border-b border-purple-100">
+            <td class="px-5 py-2.5 font-medium text-gray-800 align-top">Combinações mais difíceis?</td>
+            <td class="px-5 py-2.5 text-gray-700">Arcanos 15+11, 13+12, 16+7 em posições equivalentes — alto conflito estrutural</td>
+          </tr>
+          <tr>
+            <td class="px-5 py-2.5 font-medium text-gray-800 align-top">Como melhorar combinação difícil?</td>
+            <td class="px-5 py-2.5 text-gray-700">Nomear a tensão específica de cada posição, identificar o padrão de cada um, trabalhar com consciência</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Compatibility calculator placeholder -->
+    <div id="calculadora-compatibilidade" class="mb-10 p-6 border-2 border-dashed border-purple-200 rounded-2xl bg-purple-50 text-center">
+      <div class="inline-flex items-center gap-2 bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
+        Em breve
+      </div>
+      <p class="text-gray-800 font-semibold mb-2">Calculadora de Compatibilidade Matriz do Destino</p>
+      <p class="text-gray-600 text-sm mb-4">A calculadora de compatibilidade permitirá comparar dois mapas automaticamente. Por enquanto, gere cada mapa individualmente e compare posição por posição.</p>
+      <a href="/pt-br/calculadora-matriz-do-destino" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition-colors">
+        Calcular meu mapa →
+      </a>
+    </div>
 
     <article class="mb-14 text-gray-700 leading-relaxed space-y-5
       [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-gray-900 [&_h2]:mt-10 [&_h2]:mb-3
@@ -125,9 +181,13 @@ const breadcrumbSchema = JSON.stringify({
       [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1
       [&_strong]:font-semibold [&_strong]:text-gray-900">
 
-      <p>A compatibilidade na Matriz do Destino não é uma pontuação de 0 a 100. Não existe "incompatível" no sentido absoluto. O que a análise de compatibilidade produz é um mapa das dinâmicas prováveis entre dois padrões de funcionamento — onde eles se reforçam, onde criam atrito, e quais dimensões do relacionamento vão exigir trabalho consciente.</p>
+      <p>A compatibilidade na Matriz do Destino não é uma pontuação de 0 a 100. Não existe "incompatível" no sentido absoluto. O que a análise de compatibilidade energética produz é um mapa das dinâmicas prováveis entre dois padrões de funcionamento — onde eles se reforçam, onde criam atrito, e quais dimensões do relacionamento vão exigir trabalho consciente.</p>
 
-      <p>Esse é o valor real do método para relacionamentos: não predizer se vai funcionar, mas mapear com precisão onde e por que o atrito ocorre quando ocorre. Muitos casais que passaram anos atribuindo conflitos a "incompatibilidade de caráter" ou "diferenças irreconciliáveis" encontraram na análise de Matriz uma linguagem para identificar que o conflito estava concentrado em uma ou duas dimensões específicas — não em tudo.</p>
+      <p>Esse é o valor real do método para relacionamentos: não predizer se vai funcionar, mas mapear com precisão onde e por que o atrito ocorre quando ocorre. Muitos casais que passaram anos atribuindo conflitos a "incompatibilidade de caráter" ou "diferenças irreconciliáveis" encontraram na análise de Matriz uma linguagem para identificar que o conflito estava concentrado em uma ou duas dimensões específicas — não em tudo. Para entender o método como um todo, veja <a href="/pt-br/o-que-e-matriz-do-destino" class="text-purple-600 hover:underline">o que é a Matriz do Destino</a>.</p>
+
+      <blockquote class="my-6 pl-5 border-l-4 border-purple-400 text-lg text-purple-700 italic leading-relaxed">
+        "O conflito não estava em tudo — estava concentrado em uma ou duas dimensões específicas. Nomear isso com precisão é o que torna o trabalho possível."
+      </blockquote>
 
       <h2>O que é compatibilidade na linguagem da Matriz</h2>
 
@@ -143,6 +203,10 @@ const breadcrumbSchema = JSON.stringify({
 
       <p>Com os dois conjuntos de posições em mãos, compare posição por posição. O <a href="/pt-br/arcana/6" class="text-purple-600 hover:underline">Arcano 6 (Os Amantes)</a> em A de uma pessoa e o <a href="/pt-br/arcana/7" class="text-purple-600 hover:underline">Arcano 7 (O Carro)</a> em A da outra cria uma dinâmica específica no polo de ação: escolha consciente vs. impulso dirigido. Isso não é conflito puro — é uma tensão com potencial criativo se reconhecida. O <a href="/pt-br/arcana/15" class="text-purple-600 hover:underline">Arcano 15 (O Diabo)</a> em C de uma pessoa e o <a href="/pt-br/arcana/11" class="text-purple-600 hover:underline">Arcano 11 (A Força)</a> em C da outra cria uma dinâmica diferente nos condicionamentos profundos: padrões compulsivos vs. regulação emocional — frequentemente uma fonte de atrito em momentos de estresse.</p>
 
+      <blockquote class="my-6 pl-5 border-l-4 border-purple-400 text-lg text-purple-700 italic leading-relaxed">
+        "A análise não pergunta se vai funcionar — pergunta onde o atrito estrutural se concentra e qual trabalho consciente ele exige."
+      </blockquote>
+
       <h2>Os quatro vetores de compatibilidade</h2>
 
       <h3>Vetor de ação (posição A × posição A)</h3>
@@ -157,11 +221,42 @@ const breadcrumbSchema = JSON.stringify({
       <h3>Vetor de integração (posição E × posição E)</h3>
       <p>Os centros de dois mapas indicam o que cada pessoa experimenta como seu estado de maior coerência interna. Quando os centros são complementares, há uma sensação de reconhecimento mútuo — a pessoa vê no outro algo do que ela aspira. Quando os centros conflitam, pode haver uma dificuldade sutil de ver o outro como "plenamente integrado" — cada um tende a achar que o outro está priorizando a coisa errada.</p>
 
+      <h2>Combinações de arcanos: alta harmonia e alto conflito</h2>
+
+      <div class="my-6 border border-gray-200 rounded-xl overflow-hidden not-prose">
+        <div class="grid grid-cols-2 divide-x divide-gray-200">
+          <div class="p-4">
+            <p class="text-xs font-semibold text-green-600 uppercase tracking-wider mb-3">Alta harmonia</p>
+            <div class="space-y-2 text-sm text-gray-700">
+              <div><strong class="text-gray-900">6 + 2</strong> — escolha consciente + processamento interno; decisões tomadas com profundidade</div>
+              <div><strong class="text-gray-900">14 + 2</strong> — integração + silêncio; ritmo compartilhado sem necessidade de explicar</div>
+              <div><strong class="text-gray-900">21 + 1</strong> — conclusão + iniciativa; um completa o que o outro começa</div>
+              <div><strong class="text-gray-900">10 + 3</strong> — ciclos + expressão; criatividade com ritmo natural de mudança</div>
+              <div><strong class="text-gray-900">7 + 6</strong> — direção + escolha; um dirige, o outro valida — cooperação fluida</div>
+            </div>
+          </div>
+          <div class="p-4">
+            <p class="text-xs font-semibold text-red-600 uppercase tracking-wider mb-3">Alto conflito estrutural</p>
+            <div class="space-y-2 text-sm text-gray-700">
+              <div><strong class="text-gray-900">15 + 11</strong> — compulsão + regulação; um amplifica o que o outro tenta conter</div>
+              <div><strong class="text-gray-900">13 + 12</strong> — encerramento + suspensão; impulso de terminar vs. impulso de esperar</div>
+              <div><strong class="text-gray-900">16 + 7</strong> — ruptura + controle; colapso vs. rigidez — ciclos de crise intensa</div>
+              <div><strong class="text-gray-900">18 + 4</strong> — medo + estrutura; a estrutura do 4 sufoca o movimento do 18</div>
+              <div><strong class="text-gray-900">8 + 12</strong> — julgamento + suspensão; veredito vs. indefinição — paralisia decisória</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <h2>O que arcanos em conflito realmente indicam</h2>
 
       <p>Conflito de arcanos no contexto de compatibilidade não é uma sentença. O <a href="/pt-br/arcana/13" class="text-purple-600 hover:underline">Arcano 13 (A Morte)</a> e o <a href="/pt-br/arcana/12" class="text-purple-600 hover:underline">Arcano 12 (O Enforcado)</a> em posições equivalentes criam tensão entre o impulso de encerrar e o impulso de suspender — mas essa tensão também pode produzir um par onde um é o catalisador de mudança e o outro é o espaço de reflexão antes da mudança. A questão é se a tensão é reconhecida e pode ser nomeada, ou se fica operando como conflito sem rosto.</p>
 
-      <p>Os conflitos mais difíceis de manejar na compatibilidade são aqueles nas posições C — porque envolvem condicionamentos que a pessoa frequentemente não reconhece como seus. Quando o condicionamento de uma pessoa ativa um padrão defensivo no condicionamento da outra, o conflito parece sobre o assunto de superfície mas é sobre o padrão subjacente. Isso é o tipo de atrito que retorna mesmo após resoluções aparentes.</p>
+      <p>Os conflitos mais difíceis de manejar na compatibilidade são aqueles nas posições C — porque envolvem condicionamentos que a pessoa frequentemente não reconhece como seus. Quando o condicionamento de uma pessoa ativa um padrão defensivo no condicionamento da outra, o conflito parece sobre o assunto de superfície mas é sobre o padrão subjacente. Isso é o tipo de atrito que retorna mesmo após resoluções aparentes — a sabotagem emocional que opera sem nome.</p>
+
+      <blockquote class="my-6 pl-5 border-l-4 border-purple-400 text-lg text-purple-700 italic leading-relaxed">
+        "O conflito parece sobre o assunto de superfície, mas é sobre o padrão subjacente — o tipo de atrito que retorna mesmo após resoluções aparentes."
+      </blockquote>
 
       <h2>Compatibilidade em relacionamentos de longo prazo</h2>
 
@@ -173,10 +268,19 @@ const breadcrumbSchema = JSON.stringify({
 
       <p>O erro mais comum é usar a análise de compatibilidade como veredito — "nossos mapas conflitam em C, então não vai funcionar." O mapa descreve tendências de funcionamento, não destinos. O que ele oferece é um diagnóstico de onde o trabalho consciente é mais necessário.</p>
 
-      <p>A forma produtiva de usar é como um mapa de investigação: onde nossos padrões criam mais atrito? Qual é o tipo específico de conflito que surge nessa posição? O que cada um de nós traz de padrão que contribui para esse atrito? Essas perguntas abrem conversa; o veredito fecha.</p>
+      <p>A forma produtiva de usar é como um mapa de investigação: onde nossos padrões de relacionamento kármico criam mais atrito? Qual é o tipo específico de conflito que surge nessa posição? O que cada um de nós traz de padrão que contribui para esse atrito? Essas perguntas abrem conversa; o veredito fecha.</p>
 
-      <p>Para calcular seu mapa individual e começar a análise, use a <a href="/pt-br/calculadora-matriz-do-destino" class="text-purple-600 hover:underline">calculadora Matriz do Destino</a>. Para entender o significado de cada arcano que aparece nos seus mapas, acesse as páginas individuais dos arcanos — por exemplo, o <a href="/pt-br/arcana/6" class="text-purple-600 hover:underline">Arcano 6</a>, o <a href="/pt-br/arcana/11" class="text-purple-600 hover:underline">Arcano 11</a> ou o <a href="/pt-br/arcana/14" class="text-purple-600 hover:underline">Arcano 14</a> — para ver em qual polo o padrão está operando e o que isso significa para a dinâmica do par.</p>
+      <p>Para calcular seu mapa individual e começar a análise, use a <a href="/pt-br/calculadora-matriz-do-destino" class="text-purple-600 hover:underline">calculadora Matriz do Destino</a>. Para entender o significado de cada arcano que aparece nos seus mapas, acesse as páginas individuais — por exemplo, o <a href="/pt-br/arcana/6" class="text-purple-600 hover:underline">Arcano 6</a>, o <a href="/pt-br/arcana/11" class="text-purple-600 hover:underline">Arcano 11</a> ou o <a href="/pt-br/arcana/14" class="text-purple-600 hover:underline">Arcano 14</a> — para ver em qual polo o padrão está operando e o que isso significa para a dinâmica do par.</p>
     </article>
+
+    <!-- Inline CTA -->
+    <div class="mb-12 p-7 bg-purple-600 rounded-2xl text-white text-center">
+      <p class="text-lg font-bold mb-2">Veja onde seus padrões se cruzam</p>
+      <p class="text-purple-100 text-sm mb-5">Calcule seu mapa individual gratuitamente e compare posição por posição com o mapa do seu parceiro.</p>
+      <a href="/pt-br/calculadora-matriz-do-destino" class="inline-block bg-white text-purple-700 hover:bg-purple-50 font-semibold px-7 py-3 rounded-xl text-sm transition-colors shadow-sm">
+        Calcular minha Matriz →
+      </a>
+    </div>
 
     <!-- Entity Relationship Table -->
     <section class="mb-12">
@@ -255,13 +359,22 @@ const breadcrumbSchema = JSON.stringify({
 
     <!-- CTA -->
     <div class="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-2xl p-8 text-center">
-      <p class="text-sm text-purple-600 font-medium mb-2">Calcule seu mapa para começar a análise</p>
-      <a href="/pt-br/calculadora-matriz-do-destino" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-xl text-sm transition-colors">
-        Calcule sua Matriz do Destino
+      <h2 class="text-xl font-bold text-gray-900 mb-2">Comece com seu mapa individual</h2>
+      <p class="text-gray-600 text-sm mb-6">Calcule sua Matriz do Destino gratuitamente e explore os arcanos de cada posição para entender seus padrões antes de compará-los com o de outra pessoa.</p>
+      <a href="/pt-br/calculadora-matriz-do-destino" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold px-7 py-3.5 rounded-xl text-base transition-colors shadow-sm">
+        Calcular minha Matriz do Destino →
       </a>
     </div>
 
   </main>
+
+  <!-- Sticky mobile CTA -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-gray-200 shadow-lg px-4 py-3 flex items-center justify-between gap-3">
+    <p class="text-sm text-gray-700 font-medium leading-tight">Calcule seu mapa — grátis</p>
+    <a href="#calculadora-compatibilidade" class="shrink-0 bg-purple-600 hover:bg-purple-700 text-white font-semibold px-4 py-2 rounded-lg text-sm transition-colors">
+      Calcular →
+    </a>
+  </div>
 
   <Footer lang="pt-br" />
 </Base>
