@@ -1,0 +1,263 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Calculator from '../../components/Calculator.astro';
+
+const title = 'Калькулятор Матриці Долі — Як читати значення своїх чисел';
+const description = 'Скористайтеся безкоштовним калькулятором Матриці Долі та зрозумійте, що кожна позиція вашої карти розкриває. Повний посібник з інтерпретації: позиція A (день), B (місяць), C (рік), D (синтез), E (центр) та чотири середні точки.';
+const canonicalUrl = 'https://matrixdestiny.co/uk/kalkulator-matrytsia-doli';
+
+const hreflang = [
+  { lang: 'pt-BR', url: 'https://matrixdestiny.co/pt-br/calculadora-matriz-do-destino' },
+  { lang: 'uk', url: 'https://matrixdestiny.co/uk/kalkulator-matrytsia-doli' },
+];
+
+const relationships = {
+  isA: 'хаб калькулятора та інтерпретації — центральна сторінка, що пов\'язує розрахунок зі значенням кожної позиції карти',
+  usedFor: [
+    'розрахувати Матрицю Долі безкоштовно за датою народження',
+    'зрозуміти, що представляє кожна з 9 позицій карти',
+    'визначити, який аркан стоїть у кожній позиції, та отримати доступ до його інтерпретації',
+    'порівнювати патерни між позиціями та виявляти центральні теми карти',
+    'як відправна точка для читання карти інших людей',
+  ],
+  worksWith: [1, 6, 10, 13, 21, 22],
+  conflictsWith: [12, 18],
+  causes: [
+    'генерація індивідуальної карти — конкретна відправна точка для інтерпретації',
+    'прямий доступ до сторінок кожного аркану для поглиблення кожної позиції',
+    'ясність щодо того, що система розраховує і що вона не розраховує',
+  ],
+};
+
+const faq = [
+  {
+    q: 'Чи використовує калькулятор правильний метод Наталії Ладіні?',
+    a: 'Так. Логіка розрахунку відповідає стандартному методу: день зводиться сумою цифр якщо більший за 22, місяць використовується безпосередньо (1–12), рік — сума чотирьох цифр зводиться за потреби. Позиції D (синтез A+B+C) та E (синтез A+B+C+D) розраховуються тією самою функцією зведення. Чотири середні точки (AB, BC, CD, DA) використовують суму кожної пари суміжних позицій.',
+  },
+  {
+    q: 'Що означає, коли один і той самий аркан з\'являється в кількох позиціях?',
+    a: 'Коли аркан повторюється, він представляє центральну тему карти — щось, що діє послідовно в різних вимірах людини. Це не обов\'язково добре чи погано; це означає, що патерн цього аркану є потужною організуючою силою. Наприклад, Аркан 1 (Маг) у позиціях A та E свідчить про те, що агентність та здатність до ініціативи є як первинним двигуном, так і ядром інтеграції — що може виявлятися як дуже чіткий відчуття мети, або як параліч, коли намір не є ясним.',
+  },
+  {
+    q: 'Чи можна розрахувати Матрицю іншої людини через калькулятор?',
+    a: 'Так, калькулятор приймає будь-яку дійсну дату народження. Для розрахунку карти іншої людини просто введіть її дані народження. Інтерпретація карти третіх осіб вимагає уваги до контексту їхнього життя — карта описує тенденції, не фіксовані реалії, і та сама позиція може функціонувати зовсім по-різному залежно від індивідуальної історії.',
+  },
+  {
+    q: 'Що таке позиція E (центр) і чому вона важлива?',
+    a: 'Позиція E розраховується шляхом підсумовування чотирьох попередніх позицій (A+B+C+D) та зведення результату. Вона представляє ядро інтеграції карти — патерн, що виникає, коли всі інші функціонують разом. Це часто найважче свідомо доступний аркан, оскільки залежить від інтеграції чотирьох інших позицій. Коли E активований, людина відчуває внутрішню узгодженість, яка рідко присутня в повсякденному житті.',
+  },
+  {
+    q: 'Яка різниця між кутовими позиціями та середніми точками?',
+    a: 'Чотири кутові позиції (A, B, C, D) представляють окремі первинні психологічні функції — це головні вхідні дані карти. Чотири середні точки (AB, BC, CD, DA) представляють якість переходу між цими функціями — як енергія перетікає від одного полюсу до іншого. Середня точка з арканом високої напруги (наприклад, 15 або 16) вказує на те, що перехід між цими двома функціями часто пов\'язаний з тертям.',
+  },
+  {
+    q: 'Дата народження має бути за григоріанським календарем?',
+    a: 'Так. Метод Матриці Долі використовує григоріанський календар — стандарт день/місяць/рік. Якщо ви народилися в культурі, що використовує інший календар як стандарт, конвертуйте дату в григоріанський формат перед розрахунком.',
+  },
+  {
+    q: 'Як інтерпретувати аркани, що конфліктують між собою в суміжних позиціях?',
+    a: 'Суміжні аркани в карті, що мають відносини конфлікту (наприклад, 15 і 10, або 12 і 8), створюють специфічну напругу між функціями, які вони представляють. Ця напруга не є фіксованою проблемою — це сфера, що часто породжує тертя і яка при свідомій роботі стає джерелом розвитку. Середня точка між двома конфліктуючими позиціями розкриває, який тип енергії допомагає опосередковувати цю напругу.',
+  },
+];
+
+const articleSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  url: canonicalUrl,
+  inLanguage: 'uk',
+  publisher: { '@type': 'Organization', name: 'Matrix Destiny', url: 'https://matrixdestiny.co' },
+});
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+});
+
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Головна', item: 'https://matrixdestiny.co/uk/' },
+    { '@type': 'ListItem', position: 2, name: 'Калькулятор Матриці Долі', item: canonicalUrl },
+  ],
+});
+---
+
+<Base title={title} description={description} lang="uk" hreflang={hreflang}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={articleSchema} />
+    <script type="application/ld+json" set:html={faqSchema} />
+    <script type="application/ld+json" set:html={breadcrumbSchema} />
+  </Fragment>
+
+  <Header lang="uk" />
+
+  <main class="max-w-3xl mx-auto px-6 py-12">
+
+    <nav aria-label="breadcrumb" class="flex items-center gap-2 text-sm text-gray-500 mb-8">
+      <a href="/uk/" class="hover:text-purple-600 transition-colors">Головна</a>
+      <span aria-hidden="true">›</span>
+      <span class="text-gray-800 font-medium">Калькулятор Матриці Долі</span>
+    </nav>
+
+    <header class="mb-10">
+      <div class="inline-flex items-center gap-2 bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">
+        Хаб Калькулятор
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-4 leading-tight">
+        Калькулятор Матриці Долі — Як читати значення своїх чисел
+      </h1>
+      <p class="text-lg text-gray-500 leading-relaxed">{description}</p>
+    </header>
+
+    <!-- Calculator embedded -->
+    <div class="bg-gray-50 border border-gray-200 rounded-xl p-8 mb-14">
+      <Calculator lang="uk" />
+    </div>
+
+    <article class="mb-14 text-gray-700 leading-relaxed space-y-5
+      [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-gray-900 [&_h2]:mt-10 [&_h2]:mb-3
+      [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-gray-900 [&_h3]:mt-6 [&_h3]:mb-2
+      [&_p]:mb-0
+      [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1
+      [&_strong]:font-semibold [&_strong]:text-gray-900">
+
+      <h2>Як використовувати калькулятор</h2>
+
+      <p>Введіть день народження (1–31), місяць (1–12) та повний рік із чотирма цифрами у відповідне поле. Калькулятор автоматично застосовує логіку зведення методу: день та рік зводяться якщо дають значення вище 22, місяць використовується безпосередньо. Результат з'являється у вигляді діаманта з дев'ятьма позиціями, кожна пронумерована та прив'язана до сторінки інтерпретації відповідного аркану.</p>
+
+      <p>Розрахунок миттєвий і не потребує реєстрації. Якщо хочете зберегти результат — запишіть значення кожної позиції або зробіть скріншот.</p>
+
+      <h2>Що представляє кожна позиція карти</h2>
+
+      <p>Дев'ять позицій карти не мають фіксованої ієрархії — кожна описує інший аспект функціонування людини. Розуміння того, що вимірює кожна позиція, є передумовою для корисного читання.</p>
+
+      <h3>Позиція A — День народження: двигун дії</h3>
+      <p>Аркан у позиції A представляє те, як людина ініціює — патерн, що активується коли вона діє найбільш інстинктивно, без попереднього планування. Це "вихідна" енергія карти. <a href="/uk/arcana/1" class="text-purple-600 hover:underline">Аркан 1 (Маг)</a> у позиції A вказує на пряму ініціативу та сильний намір; <a href="/uk/arcana/12" class="text-purple-600 hover:underline">Аркан 12 (Повішений)</a> — на патерн очікування та зупинки перед будь-яким рухом.</p>
+
+      <h3>Позиція B — Місяць народження: соціальне поле</h3>
+      <p>Позиція B описує, як людина функціонує у відносинах і соціальних контекстах — що вона проектує в середовище, як її сприймають інші, і які патерни активуються в групі або в ситуаціях видимості. <a href="/uk/arcana/19" class="text-purple-600 hover:underline">Аркан 19 (Сонце)</a> у позиції B вказує на природну присутність і здатність енергізувати середовище; <a href="/uk/arcana/18" class="text-purple-600 hover:underline">Аркан 18 (Місяць)</a> — на те, що соціальне поле активує проекції та антиципаторну тривогу.</p>
+
+      <h3>Позиція C — Рік народження: глибинні обумовленості</h3>
+      <p>Аркан у C представляє рано сформовані патерни — обумовленості, що діють більш автоматично та менш свідомо. Це "найстаріша" позиція карти — її патерни мають глибше коріння та повільніше трансформуються. <a href="/uk/arcana/4" class="text-purple-600 hover:underline">Аркан 4 (Імператор)</a> у C може вказувати на обумовленість потребою в контролі та структурі, набуту дуже рано; <a href="/uk/arcana/6" class="text-purple-600 hover:underline">Аркан 6 (Закохані)</a> — на обумовленість навколо вибору, зобов'язання та дилеми.</p>
+
+      <h3>Позиція D — Синтез: вектор місії</h3>
+      <p>Позиція D розраховується шляхом підсумовування A+B+C та зведення. Вона не є прямим вхідним даним дати — вона похідна. Представляє напрям розвитку, що виникає із взаємодії між дією, соціальним полем та обумовленостями. Часто називається "місією", але з психологічною точністю: це патерн, який людина схильна розвивати, коли три первинних позиції функціонують інтегровано.</p>
+
+      <h3>Позиція E — Центр: ядро інтеграції</h3>
+      <p>Центральний аркан розраховується шляхом підсумовування всіх чотирьох попередніх позицій. Представляє стан внутрішньої узгодженості — те, що виникає, коли всі виміри карти вирівняні. <a href="/uk/arcana/21" class="text-purple-600 hover:underline">Аркан 21 (Світ)</a> у центрі свідчить про те, що стан глибокої інтеграції має якість завершеності та синтезу; <a href="/uk/arcana/16" class="text-purple-600 hover:underline">Аркан 16 (Вежа)</a> у центрі вказує, що доступ до стану інтеграції часто проходить через руйнування та колапс хибних структур.</p>
+
+      <h3>Чотири середні точки: переходи</h3>
+      <p>Позиції AB, BC, CD та DA представляють якість переходу між фланкуючими їх позиціями. Аркан з високою напругою в цих точках (наприклад, <a href="/uk/arcana/15" class="text-purple-600 hover:underline">Аркан 15 (Диявол)</a> або <a href="/uk/arcana/13" class="text-purple-600 hover:underline">Аркан 13 (Смерть)</a>) вказує, що перехід енергії між цими двома функціями часто супроводжується тертям — що може проявлятися як конфлікт між дією і стосунками або між обумовленостями і місією.</p>
+
+      <h2>Як читати результат: від позиції до патерну</h2>
+
+      <p>Поширена помилка при читанні Матриці — інтерпретувати кожну позицію ізольовано, ніби це незалежні показники. Карта функціонує як система: позиції впливають одна на одну. Корисне читання передбачає виявлення наскрізних тем — арканів, що повторюються, специфічних напруг між суміжними позиціями, та відстані між арканом у A (як людина діє) і арканом у E (як вона могла б діяти якби була інтегрована).</p>
+
+      <p>Почніть із чотирьох кутових позицій. Визначте, чи є повторення — той самий аркан у A і D, наприклад, свідчить про те, що патерн дії і вектор місії сильно вирівняні. Потім подивіться на середні точки: яка якість осі A-B (дія та соціальне поле)? Чи є там напруга? Нарешті, E — яка відстань між тим, як ви функціонуєте зараз (A, B, C), і станом інтеграції, який представляє E?</p>
+
+      <h2>Що робити після розрахунку</h2>
+
+      <p>Розрахунок — лише перший крок. Справжня цінність карти — в поглибленні кожної позиції: розумінні, в якому полюсі функціонує кожен аркан — активному чи заблокованому — та виявленні того, який із описаних патернів резонує з вашим поточним досвідом. Використовуйте посилання в діаманті для доступу до повної інтерпретації кожного аркану.</p>
+
+      <p>Якщо хочете вийти за межі індивідуального читання, Матриця також використовується для <a href="/uk/sumysnist-matrytsia-doli" class="text-purple-600 hover:underline">аналізу сумісності між двома картами</a> — порівняння еквівалентних позицій та виявлення, де є природна синергія, а де є структурне тертя.</p>
+
+      <p>Щоб зрозуміти метод від початку, прочитайте <a href="/uk/shcho-take-matrytsia-doli" class="text-purple-600 hover:underline">що таке Матриця Долі</a> перед інтерпретацією свого результату.</p>
+    </article>
+
+    <!-- Entity Relationship Table -->
+    <section class="mb-12">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Зв'язки сутності</h2>
+      <div class="border border-gray-200 rounded-xl overflow-hidden">
+        <table class="w-full text-sm">
+          <tbody>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 w-36 align-top pt-4">Є</td>
+              <td class="px-5 py-3 text-gray-700">{relationships.isA}</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 align-top pt-4">ВИКОРИСТОВУЄТЬСЯ ДЛЯ</td>
+              <td class="px-5 py-3 text-gray-700">
+                <ul class="space-y-1 list-disc list-inside">
+                  {relationships.usedFor.map((item) => <li>{item}</li>)}
+                </ul>
+              </td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 align-top pt-4">ВЗАЄМОДІЄ З</td>
+              <td class="px-5 py-3">
+                <div class="flex flex-wrap gap-2">
+                  {relationships.worksWith.map((n) => (
+                    <a href={`/uk/arcana/${n}`} class="bg-purple-50 border border-purple-200 text-purple-700 text-xs font-medium px-2.5 py-1 rounded-lg hover:bg-purple-100 transition-colors">
+                      Аркан {n}
+                    </a>
+                  ))}
+                </div>
+              </td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 align-top pt-4">КОНФЛІКТУЄ З</td>
+              <td class="px-5 py-3">
+                <div class="flex flex-wrap gap-2">
+                  {relationships.conflictsWith.map((n) => (
+                    <a href={`/uk/arcana/${n}`} class="bg-red-50 border border-red-200 text-red-700 text-xs font-medium px-2.5 py-1 rounded-lg hover:bg-red-100 transition-colors">
+                      Аркан {n}
+                    </a>
+                  ))}
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 align-top pt-4">СПРИЧИНЯЄ</td>
+              <td class="px-5 py-3 text-gray-700">
+                <ul class="space-y-1 list-disc list-inside">
+                  {relationships.causes.map((item) => <li>{item}</li>)}
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-12">
+      <h2 class="text-xl font-bold text-gray-900 mb-6">Часті запитання</h2>
+      <div class="space-y-4">
+        {faq.map((item) => (
+          <details class="group border border-gray-200 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-medium text-gray-900 hover:bg-gray-50 transition-colors list-none">
+              <span>{item.q}</span>
+              <svg class="w-4 h-4 text-gray-400 shrink-0 ml-4 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-5 pt-1 text-gray-600 leading-relaxed text-sm border-t border-gray-100">
+              {item.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-2xl p-8 text-center">
+      <p class="text-sm text-purple-600 font-medium mb-2">Ознайомтеся з кожним арканом своєї карти</p>
+      <a href="/uk/" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-xl text-sm transition-colors">
+        Дослідити всі Аркани
+      </a>
+    </div>
+
+  </main>
+
+  <Footer lang="uk" />
+</Base>

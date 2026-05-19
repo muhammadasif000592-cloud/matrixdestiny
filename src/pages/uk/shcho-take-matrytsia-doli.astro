@@ -1,0 +1,451 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Calculator from '../../components/Calculator.astro';
+
+const title = 'Що таке Матриця Долі — і що вона насправді розкриває про вас';
+const description = 'Матриця Долі — це метод психологічного картування на основі дати народження. Дізнайтеся, як працює розрахунок, що означає кожна позиція, і чим метод відрізняється від астрології та нумерології.';
+const canonicalUrl = 'https://matrixdestiny.co/uk/shcho-take-matrytsia-doli';
+
+const hreflang = [
+  { lang: 'pt-BR', url: 'https://matrixdestiny.co/pt-br/o-que-e-matriz-do-destino' },
+  { lang: 'uk', url: 'https://matrixdestiny.co/uk/shcho-take-matrytsia-doli' },
+];
+
+const relationships = {
+  isA: 'пояснювальна стаття-стовп про метод Матриця Долі — його походження, логіку розрахунку та практичне застосування',
+  usedFor: [
+    'зрозуміти, що таке Матриця Долі, перед використанням калькулятора',
+    'порівняти Матрицю з астрологією та традиційною нумерологією',
+    'осягнути, що кожна позиція карти представляє психологічно',
+    'вивчити логіку зведення арканів із дати народження',
+    'оцінити, чи підходить Матриця Долі для конкретної мети',
+  ],
+  worksWith: [1, 10, 13, 20, 21, 22],
+  conflictsWith: [15, 18],
+  causes: [
+    'розуміння методу перед інтерпретацією результатів — зменшує проекції та хибні очікування',
+    'концептуальна основа для використання калькулятора з наміром, а не просто із цікавості',
+    'здатність розрізняти, що Матриця описує і що вона не може передбачити',
+  ],
+};
+
+const faq = [
+  {
+    q: 'Чи є Матриця Долі надійним методом самопізнання?',
+    a: 'Це залежить від того, що розуміти під надійністю. Матриця не є науково валідованим клінічним інструментом, але це система символічного картування, яка при використанні з психологічною точністю здатна виявляти повторювані поведінкові патерни. Її цінність — у здатності артикулювати тенденції, які людина часто вже відчуває, але не може назвати. Ризик полягає у детерміністичному використанні — ніби аркани диктують, що відбудеться, а не описують, як людина схильна функціонувати.',
+  },
+  {
+    q: 'Яка різниця між Матрицею Долі та традиційною нумерологією?',
+    a: 'Традиційна нумерологія зводить дату народження до єдиного числа жит­тєвого шляху (1–9). Матриця Долі створює 9 різних позицій — кожна з конкретним арканом, що представляє окрему психологічну функцію. Крім того, Матриця використовує 22 Старших Аркани Таро як символічну мову, що дає значно більшу гранулярність у описі патернів. Нумерологія описує людину через її центральну сутність; Матриця картує, як вона функціонує в різних вимірах одночасно.',
+  },
+  {
+    q: 'Чому Матриця використовує саме 22 аркани?',
+    a: '22 Старших Аркани Таро представляють 22 архетипні патерни, які в системі Матриці функціонують як психологічні категорії. Вибір 22 як максимальної межі не є довільним: це достатня кількість для покриття різноманіття патернів людського функціонування без надмірної гранулярності. Числа вище 22 зводяться сумою цифр до цього діапазону, що гарантує: будь-яка дата народження генерує дійсні аркани.',
+  },
+  {
+    q: 'Чи можна використовувати Матрицю Долі без віри в містицизм?',
+    a: 'Так. Систему можна розглядати як психологічну таксономію — структурований спосіб категоризації патернів особистості та поведінки. Той факт, що вона використовує мову арканів та має езотеричне походження, не заважає її аналітичному застосуванню. Багато людей використовують Матрицю так само, як MBTI або Енеаграму: як приблизну карту, а не абсолютну істину.',
+  },
+  {
+    q: 'Що Матриця Долі не здатна розкрити?',
+    a: 'Матриця не розкриває майбутніх подій, не діагностує психологічні стани, не визначає успіх або невдачу в конкретних сферах, і не враховує контекст життя, травми, культуру чи свідомий вибір. Вона описує тенденції функціонування на основі числових патернів — а це означає, що дві людини з однаковою датою народження матимуть однакову карту, але цілком різні історії та результати.',
+  },
+  {
+    q: 'Скільки часу потрібно, щоб навчитися правильно читати Матрицю?',
+    a: 'Базову структуру — виявити 9 позицій та пов\'язати аркани з їхніми значеннями — можна засвоїти за кілька годин. Інтегральне читання, де позиції інтерпретуються у взаємозв\'язку, а не ізольовано, потребує практики з кількома картами. Більшість людей, які серйозно займаються Матрицею, витрачають тижні або місяці на розвиток справжньої інтерпретаційної майстерності.',
+  },
+  {
+    q: 'Як Наталія Ладіні розробила цей метод?',
+    a: 'Наталія Ладіні розробила Матрицю Долі в Росії, поєднавши нумерологію, Таро та практики кармічного картування. Система здобула популярність у російськомовному просторі в 2010-х роках і поширилася на інші країни переважно через онлайн-спільноти самопізнання. Метод не має формальної академічної основи, але розвинув послідовну внутрішню мову, яка дозволяє систематично порівнювати карти.',
+  },
+];
+
+const articleSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  url: canonicalUrl,
+  inLanguage: 'uk',
+  publisher: { '@type': 'Organization', name: 'Matrix Destiny', url: 'https://matrixdestiny.co' },
+});
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+});
+
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Головна', item: 'https://matrixdestiny.co/uk/' },
+    { '@type': 'ListItem', position: 2, name: 'Що таке Матриця Долі', item: canonicalUrl },
+  ],
+});
+---
+
+<Base title={title} description={description} lang="uk" hreflang={hreflang}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={articleSchema} />
+    <script type="application/ld+json" set:html={faqSchema} />
+    <script type="application/ld+json" set:html={breadcrumbSchema} />
+  </Fragment>
+
+  <Header lang="uk" />
+
+  <main class="max-w-3xl mx-auto px-6 py-12">
+
+    <nav aria-label="breadcrumb" class="flex items-center gap-2 text-sm text-gray-500 mb-8">
+      <a href="/uk/" class="hover:text-purple-600 transition-colors">Головна</a>
+      <span aria-hidden="true">›</span>
+      <span class="text-gray-800 font-medium">Що таке Матриця Долі</span>
+    </nav>
+
+    <header class="mb-10">
+      <div class="inline-flex items-center gap-2 bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">
+        Стаття-стовп
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-4 leading-tight">
+        Що таке Матриця Долі — і що вона насправді розкриває про вас
+      </h1>
+      <div class="mt-5 mb-4 space-y-1.5 text-base text-gray-600 italic leading-relaxed">
+        <p>Ви відчуваєте, що одні й ті самі емоційні патерни повторюються знову і знову?</p>
+        <p>Що певні блокування повертаються незалежно від зусиль?</p>
+        <p>Що ваші найважливіші рішення ніби визначаються чимось, що ви не можете назвати?</p>
+      </div>
+      <p class="text-lg text-gray-500 leading-relaxed">{description}</p>
+    </header>
+
+    <!-- Quick-answer block -->
+    <div class="mb-8 border-l-4 border-purple-500 bg-purple-50 rounded-r-xl overflow-hidden">
+      <div class="px-5 py-3 border-b border-purple-100">
+        <p class="text-xs font-semibold text-purple-700 uppercase tracking-wider">Швидкі відповіді</p>
+      </div>
+      <table class="w-full text-sm">
+        <tbody>
+          <tr class="border-b border-purple-100">
+            <td class="px-5 py-2.5 font-medium text-gray-800 w-2/5 align-top">Що це таке?</td>
+            <td class="px-5 py-2.5 text-gray-700">Метод психологічного картування на основі дати народження, 9 позицій відповідають 22 Старшим Арканам Таро</td>
+          </tr>
+          <tr class="border-b border-purple-100 bg-white/50">
+            <td class="px-5 py-2.5 font-medium text-gray-800 align-top">Хто створив?</td>
+            <td class="px-5 py-2.5 text-gray-700">Наталія Ладіні, в Росії, поширився близько 2015 року</td>
+          </tr>
+          <tr class="border-b border-purple-100">
+            <td class="px-5 py-2.5 font-medium text-gray-800 align-top">Як працює?</td>
+            <td class="px-5 py-2.5 text-gray-700">Зводить день, місяць і рік сумою цифр до діапазону 1–22, генеруючи 9 позицій арканів на карті</td>
+          </tr>
+          <tr class="border-b border-purple-100 bg-white/50">
+            <td class="px-5 py-2.5 font-medium text-gray-800 align-top">Що розкриває?</td>
+            <td class="px-5 py-2.5 text-gray-700">Повторювані патерни, емоційні блоки, динаміку стосунків — не майбутні події</td>
+          </tr>
+          <tr class="border-b border-purple-100">
+            <td class="px-5 py-2.5 font-medium text-gray-800 align-top">Це безкоштовно?</td>
+            <td class="px-5 py-2.5 text-gray-700">Так — розрахунок безкоштовний на цьому сайті</td>
+          </tr>
+          <tr>
+            <td class="px-5 py-2.5 font-medium text-gray-800 align-top">Різниця від нумерології?</td>
+            <td class="px-5 py-2.5 text-gray-700">Нумерологія дає 1 число; Матриця дає 9 позицій з різними психологічними функціями</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="kalkuliator" class="mb-10">
+      <Calculator lang="uk" />
+    </div>
+
+    <article class="mb-14 text-gray-700 leading-relaxed space-y-5
+      [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-gray-900 [&_h2]:mt-10 [&_h2]:mb-3
+      [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-gray-900 [&_h3]:mt-6 [&_h3]:mb-2
+      [&_p]:mb-0
+      [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1
+      [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-1
+      [&_strong]:font-semibold [&_strong]:text-gray-900">
+
+      <p>Матриця Долі — це метод психологічного картування, побудований на даті народження. Розроблений Наталією Ладіні, він перетворює день, місяць і рік народження на дев'ять числових позицій — кожна відповідає одному з 22 арканів — що описують емоційні блоки, повторювані патерни та динаміку стосунків. Це не прогноз. Не гороскоп. Це структура, яка дозволяє точно назвати те, що людина нерідко вже відчуває в собі, але не могла сформулювати.</p>
+
+      <p>Причина, чому метод набув значного поширення — особливо на ринках Росії, України, а тепер і Бразилії — не містицизм, який іноді його оточує, а специфічність. Тоді як загальні описи особистості підходять до будь-якої людини з певним зусиллям, Матриця створює індивідуальну карту з відмінними позиціями, що представляють різні функції. Це дозволяє порівнювати карти, аналізувати сумісність та виявляти повторювані патерни в різних сферах життя.</p>
+
+      <blockquote class="my-6 pl-5 border-l-4 border-purple-400 text-lg text-purple-700 italic leading-relaxed">
+        "Матриця створює індивідуальну карту з позиціями, що представляють різні функції — це дозволяє виявляти повторювані патерни, які проявляються в різних сферах життя одночасно."
+      </blockquote>
+
+      <h2>Походження: як розвивався метод</h2>
+
+      <p>Наталія Ладіні систематизувала Матрицю Долі, поєднавши три традиції: піфагорійську нумерологію (зведення чисел сумою цифр), 22 Старших Аркани Таро як психологічну таксономію та практики кармічного картування слов'янського походження. Результат — гібридна система, що використовує формальну логіку нумерології (будь-яка дата народження генерує той самий набір позицій, без двозначності) та описову багатство арканів (які несуть конкретний психологічний зміст, а не просто числове значення).</p>
+
+      <p>Метод поширився в Росії приблизно у 2015 році та швидко розширився через цифрові спільноти самопізнання. Той факт, що систему може розрахувати будь-яка людина, яка знає правила, без потреби у фахівці — сприяв її поширенню.</p>
+
+      <div class="my-4 p-4 bg-gray-50 border border-gray-200 rounded-xl">
+        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Ключові висновки</p>
+        <div class="space-y-2 text-sm text-gray-700">
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Розроблено Наталією Ладіні — поєднує піфагорійську нумерологію, 22 Старших Аркани Таро та слов'янські практики кармічного картування</span></div>
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Поширився в Росії близько 2015 року, потім через цифрові спільноти самопізнання по всьому світу</span></div>
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Будь-яка людина може розрахувати карту без фахівця — метод визначений і не допускає двозначності</span></div>
+        </div>
+      </div>
+
+      <h2>Як працює розрахунок: логіка зведення</h2>
+
+      <p>Розрахунок Матриці використовує просте правило: будь-яке число, отримане з дати народження, що перевищує 22, зводиться сумою своїх цифр до діапазону 1–22. Ця межа не є довільною — це кількість Старших Арканів, і кожне значення в діапазоні відповідає конкретному аркану з визначеним психологічним змістом.</p>
+
+      <h3>Розрахунок дня</h3>
+      <p>Дні від 1 до 22 використовуються безпосередньо. Дні від 23 до 31 зводяться: день 29 дає 2+9=11, день 30 дає 3+0=3, день 31 дає 3+1=4. Людина, народжена 22-го числа, має <a href="/uk/arcana/22" class="text-purple-600 hover:underline">Аркан 22 (Блазень)</a> у позиції A; народжена 4-го — <a href="/uk/arcana/4" class="text-purple-600 hover:underline">Аркан 4 (Імператор)</a>.</p>
+
+      <h3>Розрахунок місяця</h3>
+      <p>Місяці від 1 до 12 — всі дійсні аркани, використовуються безпосередньо. Зведення не потрібне. Людина, народжена у грудні (місяць 12), має <a href="/uk/arcana/12" class="text-purple-600 hover:underline">Аркан 12 (Повішений)</a> у позиції B.</p>
+
+      <h3>Розрахунок року</h3>
+      <p>Рік обробляється інакше: сумуються всі чотири цифри, результат зводиться якщо більший за 22. Для року 1990: 1+9+9+0=19 — дійсний аркан (<a href="/uk/arcana/19" class="text-purple-600 hover:underline">Сонце</a>). Для 1999: 1+9+9+9=28, зводиться до 2+8=10 (<a href="/uk/arcana/10" class="text-purple-600 hover:underline">Колесо Фортуни</a>). Для 2007: 2+0+0+7=9 (<a href="/uk/arcana/9" class="text-purple-600 hover:underline">Відлюдник</a>).</p>
+
+      <h3>Похідні позиції</h3>
+      <p>З трьох базових значень (A=день, B=місяць, C=рік) система розраховує ще шість позицій:</p>
+      <ul>
+        <li><strong>D (зліва)</strong> = зведення A+B+C — синтез трьох первинних вхідних даних</li>
+        <li><strong>E (центр)</strong> = зведення A+B+C+D — ядро карти</li>
+        <li><strong>AB (верхній правий)</strong> = зведення A+B</li>
+        <li><strong>BC (нижній правий)</strong> = зведення B+C</li>
+        <li><strong>CD (нижній лівий)</strong> = зведення C+D</li>
+        <li><strong>DA (верхній лівий)</strong> = зведення D+A</li>
+      </ul>
+
+      <div class="my-4 p-4 bg-gray-50 border border-gray-200 rounded-xl">
+        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Ключові висновки</p>
+        <div class="space-y-2 text-sm text-gray-700">
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Будь-яке число понад 22 зводиться сумою цифр до діапазону 1–22</span></div>
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Три первинних значення (день, місяць, рік) породжують шість похідних позицій — разом дев'ять</span></div>
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Одна дата завжди дає ту саму карту — розрахунок детерміністичний і не допускає суб'єктивної інтерпретації</span></div>
+        </div>
+      </div>
+
+      <h2>Дев'ять позицій та їхній зміст</h2>
+
+      <p>Стандартна візуалізація Матриці — діамант: A вгорі, B праворуч, C внизу, D ліворуч, E в центрі, чотири середні точки на діагоналях. Кожна позиція виконує специфічну психологічну функцію:</p>
+
+      <p><strong>Позиція A (День народження)</strong> представляє принцип дії — як людина ініціює, яку енергію використовує, коли функціонує в найбільш інстинктивному режимі. Часто її описують як "двигун" карти.</p>
+
+      <p><strong>Позиція B (Місяць народження)</strong> представляє соціальне та реляційне поле — як людина функціонує в групі, що вона проектує в зовнішнє середовище, яке обличчя з'являється в соціальних та професійних контекстах.</p>
+
+      <p><strong>Позиція C (Рік народження)</strong> представляє кармічне поле та глибинні обумовленості — кармічні стосунки та патерни, успадковані або сформовані дуже рано, що діють більш автоматично. Це найповільніша для трансформації позиція.</p>
+
+      <blockquote class="my-6 pl-5 border-l-4 border-purple-400 text-lg text-purple-700 italic leading-relaxed">
+        "Кармічні стосунки та глибинні обумовленості позиції C діють без свідомого втручання — їх усвідомлення є першим кроком до трансформації."
+      </blockquote>
+
+      <p><strong>Позиція D (Синтез)</strong> виводиться з трьох первинних вхідних даних і представляє життєве призначення — те, що виникає із взаємодії між дією (A), соціальним полем (B) та глибинними обумовленостями (C).</p>
+
+      <p><strong>Позиція E (Центр)</strong> — інтегруюче ядро карти, аркан, що з'являється, коли всі інші поєднані. Представляє потенціал найглибшої інтеграції і часто є найважче доступним свідомо патерном.</p>
+
+      <p>Чотири проміжні позиції (AB, BC, CD, DA) представляють якість енергії на осях між головними точками — де є творча напруга, де є природне тертя, де інтеграція протікає більш вільно.</p>
+
+      <div class="my-4 p-4 bg-gray-50 border border-gray-200 rounded-xl">
+        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Ключові висновки</p>
+        <div class="space-y-2 text-sm text-gray-700">
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Стандартна візуалізація — діамант: A вгорі (дія), B праворуч (соціальне), C внизу (обумовленості), D ліворуч (синтез), E в центрі (ядро)</span></div>
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Кожна позиція виконує окрему психологічну функцію — вони не взаємозамінні і не ієрархічні</span></div>
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Проміжні позиції розкривають якість переходів між головними точками — творча напруга або природне тертя</span></div>
+        </div>
+      </div>
+
+      <h2>Що Матриця розкриває — і з якою точністю</h2>
+
+      <p>Система не розкриває майбутніх подій. Вона розкриває тенденції функціонування: як людина схильна ініціювати дії, де часто зустрічає опір, які патерни повторюються навіть коли зовнішня ситуація змінюється. Це опис того, як хтось функціонує, а не того, що з ним трапиться.</p>
+
+      <p>Точність Матриці прямо залежить від глибини інтерпретації арканів. Кожен аркан має спектр прояву: активна версія (коли патерн функціонує продуктивно) і заблокована (коли той самий патерн породжує конфлікт, стагнацію або емоційний блок). <a href="/uk/arcana/1" class="text-purple-600 hover:underline">Аркан 1 (Маг)</a>, наприклад, в активному полюсі представляє агентність і ясність наміру; заблокований — параліч рішень і компульсивне делегування. Різниця між поверхневим і точним читанням полягає у знанні того, в якому полюсі аркан функціонує для конкретної людини.</p>
+
+      <blockquote class="my-6 pl-5 border-l-4 border-purple-400 text-lg text-purple-700 italic leading-relaxed">
+        "Різниця між поверхневим і точним читанням — знати, чи аркан функціонує в активному полюсі, чи породжує емоційний блок для конкретної людини."
+      </blockquote>
+
+      <div class="my-4 p-4 bg-gray-50 border border-gray-200 rounded-xl">
+        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Ключові висновки</p>
+        <div class="space-y-2 text-sm text-gray-700">
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Матриця розкриває тенденції функціонування — як людина схильна діяти — а не майбутні події</span></div>
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Кожен аркан має активний полюс (продуктивний) і заблокований (конфлікт/самосаботаж) — точне читання знає, який полюс активний</span></div>
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Повторювані аркани в кількох позиціях вказують на центральні теми, що пронизують різні сфери життя</span></div>
+        </div>
+      </div>
+
+      <h2>Чим Матриця відрізняється від астрології</h2>
+
+      <p>Найчастіше Матрицю порівнюють з астрологією, і відмінності суттєві. Астрологія використовує точне положення планет у момент народження — що вимагає точного часу і місця для надійної карти. Матриця використовує лише дату народження, без часу і місця. Це робить її більш доступною, але й більш обмеженою в індивідуальній точності.</p>
+
+      <p>Важливіше: астрологія інтерпретує небесні положення як вплив на людину. Матриця не постулює зовнішнього впливу — вона використовує дату народження лише як вхідний код для генерації числових позицій, які потім інтерпретуються психологічно. Це суттєва філософська відмінність: Матриця не стверджує, що планети щось спричиняють.</p>
+
+      <h2>Чим Матриця відрізняється від традиційної нумерології</h2>
+
+      <p>Класична піфагорійська нумерологія зводить дату народження до єдиного числа жит­тєвого шляху. Матриця створює 9 різних позицій, кожна з окремим арканом. Це дозволяє описувати людину в кількох вимірах одночасно — і виявляти внутрішні суперечності, наприклад людину, чий аркан дії — <a href="/uk/arcana/20" class="text-purple-600 hover:underline">Аркан 20 (Суд)</a>, але аркан соціального поля — <a href="/uk/arcana/12" class="text-purple-600 hover:underline">Аркан 12 (Повішений)</a>: імпульс до радикальної трансформації на особистому рівні та тенденція до зупинки й очікування на соціальному рівні.</p>
+
+      <blockquote class="my-6 pl-5 border-l-4 border-purple-400 text-lg text-purple-700 italic leading-relaxed">
+        "Тоді як нумерологія описує вас одним числом, Матриця картує, як ви функціонуєте одночасно в кількох вимірах — включно з тим, де формується емоційний блок."
+      </blockquote>
+
+      <h2>Що Матриця не є — і чому важливо це прояснити</h2>
+
+      <p>Матриця — не психологічний діагноз. Вона не замінює терапію, не виявляє стани психічного здоров'я, не визначає фіксовані здібності чи обмеження. Використовувати її продуктивно означає ставитися до неї як до відправної точки для дослідження, а не як до остаточної відповіді. Карта показує, куди дивитися; вона не показує, що ви знайдете, коли будете дивитися з достатньою чесністю.</p>
+
+      <div class="my-4 p-4 bg-gray-50 border border-gray-200 rounded-xl">
+        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Ключові висновки</p>
+        <div class="space-y-2 text-sm text-gray-700">
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Матриця не є психологічним діагнозом — не замінює терапію і не визначає фіксованих здібностей чи обмежень</span></div>
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Дві людини з однаковою датою народження мають однакову карту, але можуть мати цілком різне життя</span></div>
+          <div class="flex items-start gap-2"><span class="text-purple-500 font-bold shrink-0">·</span><span>Цінність — у тому, щоб зробити патерни видимими і свідомо виходити за їхні межі, а не приймати карту як долю</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Inline CTA between article and entity table -->
+    <div class="mb-12 p-7 bg-purple-600 rounded-2xl text-white text-center">
+      <p class="text-lg font-bold mb-2">Готові побачити, що розкривають ваші числа?</p>
+      <p class="text-purple-100 text-sm mb-5">Розрахуйте свою Матрицю Долі безкоштовно — розрахунок займає менше 30 секунд.</p>
+      <a href="/uk/kalkulator-matrytsia-doli" class="inline-block bg-white text-purple-700 hover:bg-purple-50 font-semibold px-7 py-3 rounded-xl text-sm transition-colors shadow-sm">
+        Розрахувати мою Матрицю →
+      </a>
+    </div>
+
+    <!-- Entity Relationship Table -->
+    <section class="mb-12">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Зв'язки сутності</h2>
+      <div class="border border-gray-200 rounded-xl overflow-hidden">
+        <table class="w-full text-sm">
+          <tbody>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 w-36 align-top pt-4">Є</td>
+              <td class="px-5 py-3 text-gray-700">{relationships.isA}</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 align-top pt-4">ВИКОРИСТОВУЄТЬСЯ ДЛЯ</td>
+              <td class="px-5 py-3 text-gray-700">
+                <ul class="space-y-1 list-disc list-inside">
+                  {relationships.usedFor.map((item) => <li>{item}</li>)}
+                </ul>
+              </td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 align-top pt-4">ВЗАЄМОДІЄ З</td>
+              <td class="px-5 py-3">
+                <div class="flex flex-wrap gap-2">
+                  {relationships.worksWith.map((n) => (
+                    <a href={`/uk/arcana/${n}`} class="bg-purple-50 border border-purple-200 text-purple-700 text-xs font-medium px-2.5 py-1 rounded-lg hover:bg-purple-100 transition-colors">
+                      Аркан {n}
+                    </a>
+                  ))}
+                </div>
+              </td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 align-top pt-4">КОНФЛІКТУЄ З</td>
+              <td class="px-5 py-3">
+                <div class="flex flex-wrap gap-2">
+                  {relationships.conflictsWith.map((n) => (
+                    <a href={`/uk/arcana/${n}`} class="bg-red-50 border border-red-200 text-red-700 text-xs font-medium px-2.5 py-1 rounded-lg hover:bg-red-100 transition-colors">
+                      Аркан {n}
+                    </a>
+                  ))}
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-5 py-3 font-mono text-xs font-semibold text-purple-600 bg-gray-50 align-top pt-4">СПРИЧИНЯЄ</td>
+              <td class="px-5 py-3 text-gray-700">
+                <ul class="space-y-1 list-disc list-inside">
+                  {relationships.causes.map((item) => <li>{item}</li>)}
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Summary Table -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Коротке резюме</h2>
+      <div class="border border-gray-200 rounded-xl overflow-hidden">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-purple-50 border-b border-purple-100">
+              <th class="px-5 py-3 text-left font-semibold text-purple-700 w-2/5">Запитання</th>
+              <th class="px-5 py-3 text-left font-semibold text-purple-700">Коротка відповідь</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-medium text-gray-800 align-top">Що це таке?</td>
+              <td class="px-5 py-3 text-gray-700">Метод психологічного картування на основі дати народження, 9 позицій відповідають 22 Старшим Арканам</td>
+            </tr>
+            <tr class="border-b border-gray-100 bg-gray-50">
+              <td class="px-5 py-3 font-medium text-gray-800 align-top">Хто створив?</td>
+              <td class="px-5 py-3 text-gray-700">Наталія Ладіні в Росії, поширився близько 2015 року</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-medium text-gray-800 align-top">Як працює?</td>
+              <td class="px-5 py-3 text-gray-700">Зводить день, місяць і рік сумою цифр до діапазону 1–22, генеруючи 9 позицій арканів на карті</td>
+            </tr>
+            <tr class="border-b border-gray-100 bg-gray-50">
+              <td class="px-5 py-3 font-medium text-gray-800 align-top">Що показує?</td>
+              <td class="px-5 py-3 text-gray-700">Повторювані поведінкові патерни, емоційні тенденції та динаміку стосунків — не майбутні події</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="px-5 py-3 font-medium text-gray-800 align-top">Скільки займає читання?</td>
+              <td class="px-5 py-3 text-gray-700">Розрахунок — секунди; глибоке читання з інтеграцією позицій потребує тижнів і місяців практики</td>
+            </tr>
+            <tr>
+              <td class="px-5 py-3 font-medium text-gray-800 align-top">Це безкоштовно?</td>
+              <td class="px-5 py-3 text-gray-700">Розрахунок безкоштовний; глибока інтерпретація потребує вивчення арканів — доступно на цьому сайті</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-12">
+      <h2 class="text-xl font-bold text-gray-900 mb-6">Часті запитання</h2>
+      <div class="space-y-4">
+        {faq.map((item) => (
+          <details class="group border border-gray-200 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-medium text-gray-900 hover:bg-gray-50 transition-colors list-none">
+              <span>{item.q}</span>
+              <svg class="w-4 h-4 text-gray-400 shrink-0 ml-4 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-5 pt-1 text-gray-600 leading-relaxed text-sm border-t border-gray-100">
+              {item.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-2xl p-8 text-center">
+      <h2 class="text-xl font-bold text-gray-900 mb-2">Подивіться, що розкриває ваша дата народження</h2>
+      <p class="text-gray-600 text-sm mb-6">Розрахуйте свою повну Матрицю Долі безкоштовно та дослідіть кожну позицію через детальні сторінки арканів.</p>
+      <a href="/uk/kalkulator-matrytsia-doli" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold px-7 py-3.5 rounded-xl text-base transition-colors shadow-sm">
+        Розрахувати мою Матрицю Долі →
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Sticky mobile CTA -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-gray-200 shadow-lg px-4 py-3 flex items-center justify-between gap-3">
+    <p class="text-sm text-gray-700 font-medium leading-tight">Розрахуйте свою Матрицю — безкоштовно</p>
+    <a href="#kalkuliator" class="shrink-0 bg-purple-600 hover:bg-purple-700 text-white font-semibold px-4 py-2 rounded-lg text-sm transition-colors">
+      Розрахувати →
+    </a>
+  </div>
+
+  <Footer lang="uk" />
+</Base>
