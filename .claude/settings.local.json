@@ -4,7 +4,9 @@
       "Bash(npx astro *)",
       "Bash(sort -k2 -n)",
       "Bash(dir /b \"c:\\\\Users\\\\Quadirey\\\\matrixdestiny\\\\src\\\\pages\\\\*.astro\")",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }
