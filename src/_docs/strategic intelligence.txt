@@ -1,0 +1,99 @@
+143K
+Homepage traffic
+364 keywords
+26K
+PT-BR traffic
+only 21 keywords
+1.9K
+Ukrainian traffic
+73 keywords
+751
+English traffic
+22 keywords
+Brazil is ranking #1 for "matriz do destino" (95,000 volume) with only 21 keywords on their PT-BR page. They are barely trying in Brazil and getting 26K traffic. Build a proper PT-BR content tree and you take this market.
+Their Ukrainian page (/uk/) has 73 keywords but only 1,873 traffic. They rank position 14 for "матриця долі" which has 79,630 volume. Ukrainian is massively underserved — this is your first mover opportunity.
+English: 8 keywords, zero meaningful traffic. Positions 27–49 across all English terms. They have no English topical authority whatsoever. You start with a clean slate and no real competition.
+Top keywords by traffic — where their volume actually comes from
+Keyword	Market	Volume	Their traffic	Their position
+матрица судьбы	UA	662,610	96,702	7.8
+matriz do destino	BR	95,000	22,025	1.0
+матрица судьбы онлайн	UA	83,190	12,708	6.5
+матрица совместимости	UA	128,760	6,348	8.8
+матриця долі	UA	79,630	1,018	8.2
+matriz do destino calcular	BR	4,700	1,711	1.0
+matriz de compatibilidade	BR	2,300	186	1.0
+English keywords — they rank for none of these (all positions 27–49)
+Keyword	Volume	Their position	Opportunity
+karmic tail calculator	4,500	39	UNCONTESTED
+matrix of destiny chart	1,500	46	UNCONTESTED
+how to read destiny matrix chart	600	41	UNCONTESTED
+destiny matrix chart calculator	600	27	UNCONTESTED
+free destiny matrix chart	500	39	UNCONTESTED
+arcana chart	700	49	UNCONTESTED
+Their arcana pages — what they have and what is missing
+Arcana	RU traffic	UK (UA)	PT-BR	EN
+Arcana 8	1,417	MISSING	MISSING	MISSING
+Arcana 4	1,271	MISSING	MISSING	MISSING
+Arcana 11	589	MISSING	MISSING	MISSING
+Arcana 6	528	MISSING	MISSING	MISSING
+Arcana 10	447	MISSING	MISSING	MISSING
+Arcana 12	227	MISSING	MISSING	MISSING
+Arcana 9	217	MISSING	MISSING	MISSING
+Revised language priority — based on actual data
+1. PT-BR and UK simultaneously — not EN first
+Brazil: 95K volume, competitor ranks #1 with 21 keywords. Ukrainian: 79K volume for "матриця долі", competitor ranks 14th with minimal content. Both markets are wide open right now. English has lower volume and competitor is also weak, but PT-BR and UA have the fastest path to traffic.
+
+2. All 22 arcana pages in UA and PT-BR before anything else
+Arcana pages are the second biggest traffic driver after the homepage. Competitor has them only in Russian. Every arcana page in Ukrainian and Brazilian Portuguese is an uncontested ranking opportunity. Build all 22 in both languages in Phase 1.
+
+3. Compatibility is 128K volume at position 8.8 — room to take this
+"матрица совместимости" has 128,760 monthly searches and competitor averages position 8.8. A well-structured compatibility hub with proper internal linking should rank top 3. This is your highest volume target after the main calculator keyword.Three things this data confirms that change your build priority:
+Brazil is the fastest win. They rank #1 for "matriz do destino" (95,000 monthly searches) with only 21 keywords on their PT-BR page. That means they have almost no content supporting that ranking — just the calculator. A proper PT-BR content tree with 22 arcana pages, compatibility content, and emotional state articles will compete immediately.
+Ukrainian is being ignored by the competitor. Their /uk/ page has 73 keywords but only 1,873 traffic. They rank position 14 for "матриця долі" which has 79,630 monthly searches. That is a first-place keyword sitting unclaimed in Ukrainian. You build the Ukrainian content properly and you own that term.
+English is completely uncontested. Every English keyword — "karmic tail calculator" (4,500 volume), "matrix of destiny chart" (1,500 volume) — the competitor ranks between position 27 and 49. They get zero English traffic from these. You start with no competition.
+Revised build order based on data: PT-BR and Ukrainian simultaneously in Phase 1, English in Phase 2. The data does not support EN first — Brazil and Ukraine have proven volume right now.
+First content to build — before anything else:
+All 22 arcana pages in Ukrainian and all 22 in Brazilian Portuguese. Competitor has zero of these in either language. Each one is an uncontested page.
+Ready to build the content brief templates for the arcana pages whenever you are. Go back to the WordPress setup and we continue the plugin installation in parallel.This is their Ahrefs overview. Several critical numbers here.
+The headline facts:
+DR 15 — extremely low domain authority. This is a weak domain. You can compete with this from a new site within 6–12 months of consistent link building. DR 15 is not a fortress.
+188K organic traffic, down 43K last month. They are losing traffic — not growing. This is the right time to enter.
+931 organic keywords, down 88 last month. Shrinking keyword footprint. Their topical authority is weakening, not strengthening.
+Traffic by location confirms everything from the CSV:
+
+Ukraine: 132K traffic, 70.3% of all traffic — and it is down 30.8K
+Brazil: 24.4K traffic, 13% — down 3.7K
+Turkey: 3.9K, 2.1%
+
+AI citations — this is important:
+
+AI Overviews: +6 pages being cited
+ChatGPT: -4 pages (losing AI visibility)
+Perplexity: present
+Grok: -1
+
+They are losing ground on AI retrieval. Your Rule 12 (AI retrieval engineering) and Rule 20 (build for AI systems) applied from day one puts you in a position to capture AI citations they are dropping.
+Backlinks: 13.5K from 347 referring domains. That is the link building target — you need to identify and pursue the same 347 domains. Export their backlink profile next and share it.
+Bottom line: DR 15, losing traffic, losing keywords, losing AI citations. This competitor is declining. The market is not declining — they are just executing poorly. Right timing to launch.You said: how can i save this data inside the project?how can i save this data inside the project?17:33Claude responded: You have two options depending on where you are working.You have two options depending on where you are working.
+If you have created a Claude Project:
+Simply upload the files directly into the project. Go to your Matrix Destiny project, find the files section or attachments area, and upload:
+
+The two CSV files you already shared
+The Ahrefs screenshot
+The rules markdown file
+The roadmap HTML file
+
+Every conversation inside the project will then have access to all of them automatically.
+If you have not created a Claude Project yet:
+Do this now:
+
+Look at the left sidebar in Claude
+Find Projects or a + button
+Click New Project
+Name it Matrix Destiny
+Upload all your files into it
+Move this conversation into the project if the option exists
+
+Files to save into the project right now:
+FileWhat it ismatrix-destiny-seo-rules-clean.mdYour governance rulesmatrix-of-destiny-roadmap.htmlFull site roadmaporganic-keywords CSVCompetitor keyword datatop-pages CSVCompetitor page dataAhrefs screenshotCompetitor authority overview
+Once everything is in the project, every future session — content briefs, article writing, plugin setup — starts with full context and you never re-upload anything again.

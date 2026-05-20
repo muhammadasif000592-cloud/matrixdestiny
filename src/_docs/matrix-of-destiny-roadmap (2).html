@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrix of Destiny — Full Site Roadmap</title>
+<style>
+  :root {
+    --ink: #0f0e17;
+    --ink2: #2e2c3c;
+    --muted: #6b6883;
+    --surface: #f7f6fb;
+    --surface2: #eeecf8;
+    --border: rgba(90,80,140,0.15);
+    --accent: #5b3ff8;
+    --accent2: #9b5de5;
+    --gold: #c9954a;
+    --teal: #1aa3a3;
+    --coral: #e05a4e;
+    --green: #2e9e5e;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #fff; color: var(--ink); font-size: 16px; line-height: 1.7; }
+  .doc { max-width: 900px; margin: 0 auto; padding: 48px 32px 80px; }
+
+  .header { text-align: center; padding: 40px 0 48px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+  .header .eyebrow { font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent2); margin-bottom: 16px; }
+  .header h1 { font-size: 36px; font-weight: 700; line-height: 1.2; color: var(--ink); margin-bottom: 12px; }
+  .header .sub { font-size: 16px; color: var(--muted); font-style: italic; }
+  .header .meta { display: flex; gap: 24px; justify-content: center; margin-top: 24px; flex-wrap: wrap; }
+  .header .meta span { font-family: 'Courier New', monospace; font-size: 11px; color: var(--muted); background: var(--surface); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border); }
+
+  .section { margin-bottom: 52px; }
+  .section-label { font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent2); margin-bottom: 8px; }
+  .section h2 { font-size: 26px; font-weight: 700; color: var(--ink); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--surface2); }
+  .section h3 { font-size: 18px; font-weight: 700; color: var(--ink2); margin: 24px 0 10px; }
+  .section p { color: var(--ink2); margin-bottom: 12px; }
+
+  .decision { background: var(--ink); color: #fff; padding: 28px 32px; border-radius: var(--radius); margin: 20px 0 28px; }
+  .decision .verdict { font-size: 13px; font-family: 'Courier New', monospace; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .decision h3 { font-size: 22px; color: #fff; margin-bottom: 10px; }
+  .decision p { color: rgba(255,255,255,0.75); font-size: 15px; }
+
+  .callout { border-left: 3px solid var(--accent); background: var(--surface); padding: 16px 20px; border-radius: 0 var(--radius) var(--radius) 0; margin: 16px 0; }
+  .callout.gold { border-color: var(--gold); }
+  .callout.teal { border-color: var(--teal); }
+  .callout.coral { border-color: var(--coral); }
+  .callout.green { border-color: var(--green); }
+  .callout strong { color: var(--ink); }
+  .callout p { margin: 0; color: var(--ink2); font-size: 15px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+  th { background: var(--ink); color: #fff; text-align: left; padding: 10px 14px; font-family: 'Courier New', monospace; font-size: 12px; letter-spacing: 1px; font-weight: 400; }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--ink2); vertical-align: top; }
+  tr:nth-child(even) td { background: var(--surface); }
+  td.label { font-weight: 700; color: var(--ink); width: 30%; }
+  .tag { display: inline-block; font-family: 'Courier New', monospace; font-size: 10px; padding: 2px 8px; border-radius: 20px; margin: 1px 2px; }
+  .tag.gap { background: #fef3f2; color: var(--coral); border: 1px solid #fecdca; }
+  .tag.ok { background: #f0fdf4; color: var(--green); border: 1px solid #bbf7d0; }
+  .tag.neutral { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+  .tag.win { background: #e0f2f7; color: #0e6e8c; border: 1px solid #b0dff0; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin: 20px 0; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; text-align: center; }
+  .stat .num { font-size: 36px; font-weight: 700; color: var(--accent); font-family: 'Courier New', monospace; line-height: 1; margin-bottom: 6px; }
+  .stat .lbl { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-family: 'Courier New', monospace; }
+
+  .stack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+  .stack-item { background: var(--surface); border-radius: 6px; padding: 12px 16px; border: 1px solid var(--border); font-size: 13px; }
+  .stack-item strong { color: var(--ink); display: block; font-family: 'Courier New', monospace; font-size: 12px; }
+  .stack-item span { color: var(--muted); font-size: 12px; }
+
+  .folder { background: var(--ink); color: #e8e6f0; padding: 24px 28px; border-radius: var(--radius); font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8; margin: 16px 0; }
+  .folder .dir { color: var(--accent2); }
+  .folder .file { color: #9fe1cb; }
+  .folder .comment { color: #6b6883; }
+
+  .cluster { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 12px; }
+  .cluster-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+  .cluster-head h4 { font-size: 15px; font-weight: 700; color: var(--ink); }
+  .cluster-head .count { font-family: 'Courier New', monospace; font-size: 11px; background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 20px; }
+  .cluster-head .type { font-family: 'Courier New', monospace; font-size: 10px; color: var(--muted); border: 1px solid var(--border); padding: 2px 8px; border-radius: 20px; }
+  .cluster ul { list-style: none; }
+  .cluster ul li { font-size: 13.5px; color: var(--ink2); padding: 3px 0; padding-left: 14px; position: relative; }
+  .cluster ul li::before { content: "—"; position: absolute; left: 0; color: var(--muted); }
+
+  .koray-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 12px; }
+  .koray-card h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; font-family: 'Courier New', monospace; letter-spacing: 1px; text-transform: uppercase; }
+  .koray-card p { font-size: 14px; color: var(--ink2); margin-bottom: 8px; }
+  .koray-card .example { font-family: 'Courier New', monospace; font-size: 12px; background: var(--surface2); padding: 8px 12px; border-radius: 6px; color: var(--ink2); margin-top: 6px; }
+
+  .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 16px 0; }
+  .lang-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+  .lang-card .flag { font-size: 28px; margin-bottom: 8px; }
+  .lang-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .lang-card p { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+  .lang-card .lang-stat { font-family: 'Courier New', monospace; font-size: 11px; color: var(--accent); }
+
+  .mono-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .mono-card { background: var(--surface); border-radius: var(--radius); padding: 18px; border: 1px solid var(--border); }
+  .mono-card .price { font-size: 22px; font-weight: 700; font-family: 'Courier New', monospace; color: var(--accent); margin-bottom: 4px; }
+  .mono-card h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .mono-card ul { list-style: none; font-size: 12px; color: var(--muted); }
+  .mono-card ul li { padding: 2px 0; padding-left: 12px; position: relative; }
+  .mono-card ul li::before { content: "·"; position: absolute; left: 0; }
+
+  .phase { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 16px; }
+  .phase-head { background: var(--ink); color: #fff; padding: 14px 20px; display: flex; align-items: center; gap: 16px; }
+  .phase-head .phase-num { font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: rgba(255,255,255,0.5); }
+  .phase-head .phase-title { font-size: 16px; font-weight: 700; }
+  .phase-head .phase-time { margin-left: auto; font-family: 'Courier New', monospace; font-size: 11px; color: var(--accent2); }
+  .phase-body { padding: 20px 24px; }
+  .phase-body .goal { font-size: 13px; color: var(--muted); font-style: italic; margin-bottom: 14px; }
+  .task-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .task { font-size: 13.5px; color: var(--ink2); padding: 8px 12px; background: var(--surface); border-radius: 6px; border-left: 3px solid var(--border); }
+  .task strong { color: var(--ink); display: block; margin-bottom: 2px; font-size: 13px; }
+  .task span { font-size: 12px; color: var(--muted); }
+
+  .count-table td:last-child, .count-table th:last-child { text-align: right; font-family: 'Courier New', monospace; }
+  .count-table .total-row td { font-weight: 700; color: var(--ink); background: var(--surface2) !important; }
+
+  code { font-family: 'Courier New', monospace; background: var(--surface2); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+
+  @media (max-width: 620px) {
+    .doc { padding: 24px 16px 60px; }
+    .task-grid { grid-template-columns: 1fr; }
+    .stack-grid { grid-template-columns: 1fr; }
+    .mono-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="eyebrow">Strategic Site Roadmap · 2026</div>
+    <h1>matrixdestiny.co<br>Complete Build Roadmap</h1>
+    <div class="sub">Astro + Tailwind + Vercel · Koray Semantic Framework · PT-BR / UA / EN</div>
+    <div class="meta">
+      <span>Stack: Astro + Tailwind</span>
+      <span>Deploy: Vercel (free)</span>
+      <span>Competitor: destinynums.com DR15</span>
+      <span>Phase 1 cost: $0</span>
+      <span>Markets: Brazil · Ukraine · English Tier-1</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       01. PLATFORM DECISION
+  ══════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Section 01</div>
+    <h2>Platform Decision: Astro — Not WordPress</h2>
+
+    <div class="decision">
+      <div class="verdict">Verdict</div>
+      <h3>Astro + Vercel. Static generation. Zero cost.</h3>
+      <p>matrixdestiny.co is a programmatic SEO site at its core — hundreds of arcana pages, compatibility combinations, karmic intersections across three languages. Astro generates all of these as pure static HTML at build time. Pages load instantly from Vercel's CDN. No database queries. No plugins. No monthly hosting cost. Same approach as 5letterwordvault — just a bigger content structure.</p>
+    </div>
+
+    <div class="callout coral">
+      <p><strong>Why not WordPress:</strong> Database-driven. Every programmatic page hits the database on load. At 490+ pages across three languages it gets slow and expensive. Your competitor uses WordPress and is losing 43K traffic per month. You serve static HTML from a global CDN in milliseconds.</p>
+    </div>
+
+    <h3>Full tech stack</h3>
+    <div class="stack-grid">
+      <div class="stack-item"><strong>Astro</strong><span>Framework — static generation, components, i18n routing built in</span></div>
+      <div class="stack-item"><strong>Tailwind CSS</strong><span>Styling — utility classes, no separate CSS files to manage</span></div>
+      <div class="stack-item"><strong>Vercel</strong><span>Deployment — free tier, auto-deploys from GitHub on every push</span></div>
+      <div class="stack-item"><strong>Cloudflare</strong><span>CDN + DNS + SSL — free tier, routes all three language markets</span></div>
+      <div class="stack-item"><strong>GitHub</strong><span>Version control — already set up from 5letterwordvault</span></div>
+      <div class="stack-item"><strong>VS Code</strong><span>Editor — already set up, no change needed</span></div>
+      <div class="stack-item"><strong>Supabase</strong><span>Database + auth — Phase 2 only, not in current build</span></div>
+      <div class="stack-item"><strong>Stripe</strong><span>Payments — Phase 3 only, not in current build</span></div>
+    </div>
+
+    <h3>Phase 1 cost: zero</h3>
+    <table>
+      <tr><th>Service</th><th>Cost</th><th>Free limit</th></tr>
+      <tr><td class="label">Vercel</td><td>$0</td><td>Unlimited static pages, 100GB bandwidth/month</td></tr>
+      <tr><td class="label">Cloudflare</td><td>$0</td><td>Unlimited CDN, DNS, SSL</td></tr>
+      <tr><td class="label">GitHub</td><td>$0</td><td>Unlimited public and private repos</td></tr>
+      <tr><td class="label">Astro + Tailwind</td><td>$0</td><td>Open source, free forever</td></tr>
+      <tr><td class="label">Supabase (Phase 2)</td><td>$0</td><td>500MB database, 50K monthly users</td></tr>
+      <tr><td class="label">Stripe (Phase 3)</td><td>2.9% + 30¢ per transaction</td><td>No monthly fee — pay only when earning</td></tr>
+      <tr><td class="label">Domain renewal</td><td>~$12/year</td><td>Already paid at Namecheap</td></tr>
+    </table>
+
+    <h3>Astro project folder structure</h3>
+    <div class="folder">
+      <span class="dir">matrixdestiny/</span><br>
+      &nbsp;&nbsp;<span class="dir">src/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">pages/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">index.astro</span> <span class="comment">← EN homepage + calculator</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">pt-br/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">index.astro</span> <span class="comment">← PT-BR homepage</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">arcana/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">[slug].astro</span> <span class="comment">← 22 arcana pages PT-BR (generated)</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">uk/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">index.astro</span> <span class="comment">← Ukrainian homepage</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">arcana/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">[slug].astro</span> <span class="comment">← 22 arcana pages UA (generated)</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">arcana/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">[slug].astro</span> <span class="comment">← 22 arcana pages EN (generated)</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">components/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">Calculator.astro</span> <span class="comment">← free matrix calculator</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">Header.astro</span> · <span class="file">Footer.astro</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">EntityRelations.astro</span> <span class="comment">← IS-A / WORKS-WITH table (Rule 4)</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">FAQ.astro</span> <span class="comment">← FAQ schema block (Rule 12)</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">InternalLinks.astro</span> <span class="comment">← upward / sibling / contextual links</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">layouts/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">Base.astro</span> <span class="comment">← HTML head, meta, hreflang tags</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">Article.astro</span> <span class="comment">← pillar and cluster article layout</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">Arcana.astro</span> <span class="comment">← arcana entity page layout</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">Tool.astro</span> <span class="comment">← calculator and tool page layout</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">content/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">arcana/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">en/</span> <span class="comment">← arcana-1.md to arcana-22.md</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">pt-br/</span> <span class="comment">← arcano-1.md to arcano-22.md</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">uk/</span> <span class="comment">← arkan-1.md to arkan-22.md</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">articles/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">en/</span> · <span class="dir">pt-br/</span> · <span class="dir">uk/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">i18n/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">en.json</span> · <span class="file">pt-br.json</span> · <span class="file">uk.json</span> <span class="comment">← UI strings per language</span><br>
+      &nbsp;&nbsp;<span class="dir">public/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="file">robots.txt</span> · <span class="file">sitemap.xml</span> <span class="comment">← auto-generated by Astro</span><br>
+      &nbsp;&nbsp;<span class="file">astro.config.mjs</span> <span class="comment">← i18n config, site URL, integrations</span><br>
+      &nbsp;&nbsp;<span class="file">tailwind.config.mjs</span> · <span class="file">package.json</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       02. COMPETITOR INTELLIGENCE
+  ══════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Section 02</div>
+    <h2>Competitor Intelligence: destinynums.com</h2>
+
+    <p>Real data from Ahrefs — 929 keywords and 354 pages exported and analysed. This is their actual position, not estimated.</p>
+
+    <div class="stat-row">
+      <div class="stat"><div class="num">DR15</div><div class="lbl">Very weak domain</div></div>
+      <div class="stat"><div class="num">188K</div><div class="lbl">Traffic — down 43K</div></div>
+      <div class="stat"><div class="num">931</div><div class="lbl">Keywords — down 88</div></div>
+      <div class="stat"><div class="num">347</div><div class="lbl">Referring domains</div></div>
+    </div>
+
+    <h3>Traffic by market — real numbers</h3>
+    <table>
+      <tr><th>Market</th><th>Their traffic</th><th>Their keywords</th><th>Your gap</th></tr>
+      <tr><td class="label">Ukraine</td><td>132K — down 30.8K/month</td><td>606 — Russian only</td><td><span class="tag gap">NO UKRAINIAN CONTENT</span></td></tr>
+      <tr><td class="label">Brazil</td><td>24.4K — only 21 keywords</td><td>25</td><td><span class="tag gap">ZERO CONTENT DEPTH</span></td></tr>
+      <tr><td class="label">English</td><td>751 — positions 27–49</td><td>22</td><td><span class="tag gap">COMPLETELY UNCONTESTED</span></td></tr>
+      <tr><td class="label">Arcana pages</td><td>Partial — Russian only</td><td>—</td><td><span class="tag gap">ZERO IN UA / PT-BR / EN</span></td></tr>
+    </table>
+
+    <h3>Top keywords by traffic — where their volume comes from</h3>
+    <table>
+      <tr><th>Keyword</th><th>Market</th><th>Volume</th><th>Their traffic</th><th>Position</th></tr>
+      <tr><td class="label">матрица судьбы</td><td>Ukraine</td><td>662,610</td><td>96,702</td><td>7.8</td></tr>
+      <tr><td class="label">matriz do destino</td><td>Brazil</td><td>95,000</td><td>22,025</td><td>1.0</td></tr>
+      <tr><td class="label">матрица судьбы онлайн</td><td>Ukraine</td><td>83,190</td><td>12,708</td><td>6.5</td></tr>
+      <tr><td class="label">матрица совместимости</td><td>Ukraine</td><td>128,760</td><td>6,348</td><td>8.8</td></tr>
+      <tr><td class="label">матриця долі</td><td>Ukraine</td><td>79,630</td><td>1,018</td><td>8.2</td></tr>
+      <tr><td class="label">matriz do destino calcular</td><td>Brazil</td><td>4,700</td><td>1,711</td><td>1.0</td></tr>
+      <tr><td class="label">matriz de compatibilidade</td><td>Brazil</td><td>2,300</td><td>186</td><td>1.0</td></tr>
+    </table>
+
+    <h3>English keywords — they rank for none of these</h3>
+    <table>
+      <tr><th>Keyword</th><th>Volume</th><th>Their position</th><th>Opportunity</th></tr>
+      <tr><td class="label">karmic tail calculator</td><td>4,500</td><td>39</td><td><span class="tag win">UNCONTESTED</span></td></tr>
+      <tr><td class="label">matrix of destiny chart</td><td>1,500</td><td>46</td><td><span class="tag win">UNCONTESTED</span></td></tr>
+      <tr><td class="label">how to read destiny matrix chart</td><td>600</td><td>41</td><td><span class="tag win">UNCONTESTED</span></td></tr>
+      <tr><td class="label">destiny matrix chart calculator</td><td>600</td><td>27</td><td><span class="tag win">UNCONTESTED</span></td></tr>
+      <tr><td class="label">free destiny matrix chart</td><td>500</td><td>39</td><td><span class="tag win">UNCONTESTED</span></td></tr>
+      <tr><td class="label">arcana chart</td><td>700</td><td>49</td><td><span class="tag win">UNCONTESTED</span></td></tr>
+    </table>
+
+    <h3>Their arcana gap — biggest single opportunity</h3>
+    <table>
+      <tr><th>Arcana</th><th>RU traffic</th><th>Ukrainian page</th><th>PT-BR page</th><th>EN page</th></tr>
+      <tr><td class="label">Arcana 8</td><td>1,417</td><td><span class="tag gap">MISSING</span></td><td><span class="tag gap">MISSING</span></td><td><span class="tag gap">MISSING</span></td></tr>
+      <tr><td class="label">Arcana 4</td><td>1,271</td><td><span class="tag gap">MISSING</span></td><td><span class="tag gap">MISSING</span></td><td><span class="tag gap">MISSING</span></td></tr>
+      <tr><td class="label">Arcana 11</td><td>589</td><td><span class="tag gap">MISSING</span></td><td><span class="tag gap">MISSING</span></td><td><span class="tag gap">MISSING</span></td></tr>
+      <tr><td class="label">Arcana 6</td><td>528</td><td><span class="tag gap">MISSING</span></td><td><span class="tag gap">MISSING</span></td><td><span class="tag gap">MISSING</span></td></tr>
+      <tr><td class="label">Arcana 10</td><td>447</td><td><span class="tag gap">MISSING</span></td><td><span class="tag gap">MISSING</span></td><td><span class="tag gap">MISSING</span></td></tr>
+      <tr><td class="label">Arcana 12</td><td>227</td><td><span class="tag gap">MISSING</span></td><td><span class="tag gap">MISSING</span></td><td><span class="tag gap">MISSING</span></td></tr>
+      <tr><td class="label">All 22 arcana</td><td>Partial RU</td><td><span class="tag gap">ZERO</span></td><td><span class="tag gap">ZERO</span></td><td><span class="tag gap">ZERO</span></td></tr>
+    </table>
+
+    <h3>AI citations — they are losing ground</h3>
+    <div class="callout coral">
+      <p><strong>ChatGPT: -4 pages · Grok: -1 page.</strong> They are losing AI retrieval visibility. Your Rule 12 (AI retrieval engineering) and Rule 20 (build for AI systems) applied from day one means you capture the AI citations they are dropping. Perplexity and AI Overviews are the priority targets.</p>
+    </div>
+
+    <h3>Using their data legally</h3>
+    <table>
+      <tr><th>Action</th><th>Status</th><th>Notes</th></tr>
+      <tr><td class="label">Export their ranking keywords via Ahrefs</td><td><span class="tag ok">LEGAL</span></td><td>Validated keyword list for your topical map — already done</td></tr>
+      <tr><td class="label">Analyse their URL and page structure</td><td><span class="tag ok">LEGAL</span></td><td>Study gaps and what they are not covering</td></tr>
+      <tr><td class="label">Target their backlink sources</td><td><span class="tag ok">LEGAL</span></td><td>Export their 347 referring domains — pursue same sources</td></tr>
+      <tr><td class="label">Copy their written content</td><td><span class="tag gap">ILLEGAL</span></td><td>Copyright infringement — all content must be original</td></tr>
+      <tr><td class="label">Replicate their calculator logic</td><td><span class="tag neutral">CAREFUL</span></td><td>Matrix of Destiny method is public — do not copy their code</td></tr>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       03. LANGUAGE STRATEGY
+  ══════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Section 03</div>
+    <h2>Language Build Order — Data Driven</h2>
+
+    <div class="callout coral">
+      <p><strong>Priority based on real Ahrefs data — not assumptions:</strong> PT-BR and Ukrainian simultaneously in Phase 1. English in Phase 2. Brazil has proven 95K volume with zero content competition. Ukraine has 79K volume with a competitor ranking 14th. Both are faster wins than English right now.</p>
+    </div>
+
+    <div class="lang-grid">
+      <div class="lang-card">
+        <div class="flag">🇧🇷</div>
+        <h4>Brazilian Portuguese — Phase 1</h4>
+        <p>Competitor ranks #1 for "matriz do destino" (95,000 volume) with only 21 keywords. A proper PT-BR content tree with 22 arcana pages immediately competes for this traffic.</p>
+        <div class="lang-stat">matrixdestiny.co/pt-br/ · hreflang: pt-BR</div>
+        <br><p style="font-size:13px;color:#6b6883;">Key terms: Matriz do Destino · Calcular matriz do destino · Arcano [1-22] matriz do destino · Matriz de compatibilidade</p>
+      </div>
+      <div class="lang-card">
+        <div class="flag">🇺🇦</div>
+        <h4>Ukrainian — Phase 1</h4>
+        <p>Competitor ranks position 14 for "матриця долі" (79,630 volume) with almost no Ukrainian content. First mover with proper Ukrainian content owns this keyword.</p>
+        <div class="lang-stat">matrixdestiny.co/uk/ · hreflang: uk</div>
+        <br><p style="font-size:13px;color:#6b6883;">Key terms: Матриця долі · Розрахунок матриці · Аркан [1-22] матриця долі · Сумісність матриця</p>
+      </div>
+      <div class="lang-card">
+        <div class="flag">🇬🇧</div>
+        <h4>English — Phase 2</h4>
+        <p>Competitor ranks 27–49 on all English terms. Zero English topical authority. Build after PT-BR and UA are generating traffic. Lower current volume but completely uncontested.</p>
+        <div class="lang-stat">matrixdestiny.co/ · hreflang: en</div>
+        <br><p style="font-size:13px;color:#6b6883;">Key terms: Matrix of Destiny · Karmic tail calculator · Arcana [1-22] meaning · Matrix of Destiny chart</p>
+      </div>
+    </div>
+
+    <h3>Astro i18n configuration</h3>
+    <div class="callout">
+      <p><strong>astro.config.mjs setup:</strong> defaultLocale: 'en' · locales: ['en', 'pt-br', 'uk'] · routing: prefixOtherLocales (English at root, others at /pt-br/ and /uk/). Astro generates hreflang tags automatically. Each language content tree lives in its own folder under src/content/.</p>
+    </div>
+
+    <h3>Localisation rules — not just translation</h3>
+    <table>
+      <tr><th>Element</th><th>EN</th><th>Ukrainian</th><th>PT-BR</th></tr>
+      <tr><td class="label">Name examples</td><td>Emma, James</td><td>Олена, Богдан, Микола</td><td>Gabriela, Lucas, Ana</td></tr>
+      <tr><td class="label">Cultural framing</td><td>Self-help angle</td><td>Spiritual + modern psychology</td><td>Esoteric + personal growth</td></tr>
+      <tr><td class="label">Date format in calculator</td><td>MM/DD/YYYY</td><td>DD.MM.YYYY</td><td>DD/MM/YYYY</td></tr>
+      <tr><td class="label">Payment messaging (Phase 3)</td><td>USD — Stripe</td><td>UAH option + PrivatBank</td><td>BRL option + Pix / boleto</td></tr>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       04. TOPICAL AUTHORITY MAP
+  ══════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Section 04</div>
+    <h2>Topical Authority Map — 15 Clusters</h2>
+
+    <p>Topical authority requires comprehensive coverage of every meaningful subtopic in the niche. Each cluster has one HUB pillar and multiple supporting articles. Build cluster by cluster — never randomly across the site (Rule 16).</p>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 1 — Core Method and Origin</h4>
+        <span class="count">15 articles</span>
+        <span class="type">HUB</span>
+      </div>
+      <ul>
+        <li>What is Matrix of Destiny [Pillar — 4,000 words] — primary entity definition page</li>
+        <li>History and origin of Matrix of Destiny (Natalia Ladini — person entity)</li>
+        <li>How to calculate Matrix of Destiny by birth date</li>
+        <li>Matrix of Destiny vs numerology — key differences</li>
+        <li>Matrix of Destiny vs astrology — what each shows</li>
+        <li>Matrix of Destiny and Tarot — how they connect</li>
+        <li>Matrix of Destiny vs Pythagoras square</li>
+        <li>Is Matrix of Destiny accurate — what the method actually claims</li>
+        <li>How to read a Matrix of Destiny chart for beginners</li>
+        <li>Matrix of Destiny free vs paid — what you actually get</li>
+      </ul>
+    </div>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 2 — The 22 Arcana (Entity Library)</h4>
+        <span class="count">22 core + ~80 variants</span>
+        <span class="type">SPOKE + TERMINAL</span>
+      </div>
+      <ul>
+        <li>Arcana 1–22 core pages — one per arcana, all three languages, built first</li>
+        <li>Each core page must include: energy description · positive manifestation · negative manifestation · positions in the matrix · IS-A / USED-FOR / WORKS-WITH / CONFLICTS-WITH / CAUSES relationship table · FAQ schema block · internal links upward and sibling</li>
+        <li>Variants generated only where search intent is validated: arcana-X-love · arcana-X-shadow · arcana-X-career · arcana-X-compatibility · arcana-X-anxiety</li>
+        <li>Build order by traffic potential: Arcana 8 → 4 → 11 → 6 → 10 → 12 → 9 → remaining</li>
+      </ul>
+    </div>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 3 — Energy Zones and Positions</h4>
+        <span class="count">18 articles</span>
+        <span class="type">SPOKE</span>
+      </div>
+      <ul>
+        <li>Energy zones in Matrix of Destiny — full guide [Pillar]</li>
+        <li>Heart zone (Anahata) — how to interpret and strengthen it</li>
+        <li>Financial zone in Matrix of Destiny — reading and meaning</li>
+        <li>Relationships zone — interpretation guide</li>
+        <li>Health zone — physical energy analysis</li>
+        <li>Karmic tail — past life influence and how to work with it</li>
+        <li>Comfort zone vs social realization zone</li>
+        <li>Sky and earth energies — what the diagonal lines reveal</li>
+        <li>Centre of the matrix — personal energy and ego reading</li>
+        <li>How to activate weak zones in your matrix</li>
+      </ul>
+    </div>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 4 — Calculator Pages (Semantic Centre)</h4>
+        <span class="count">10 pages</span>
+        <span class="type">TOOL</span>
+      </div>
+      <ul>
+        <li>Personal matrix calculator [main tool page — semantic centre of entire site]</li>
+        <li>Compatibility matrix calculator</li>
+        <li>Children's matrix calculator</li>
+        <li>Annual matrix — year forecast by birth date</li>
+        <li>Past life matrix — karmic debt calculator</li>
+        <li>Business partner compatibility calculator</li>
+        <li>How to calculate your matrix manually — step by step</li>
+        <li>Free vs paid matrix reading — what each reveals</li>
+      </ul>
+    </div>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 5 — Life Purpose and Predestination</h4>
+        <span class="count">20 articles</span>
+        <span class="type">SPOKE</span>
+      </div>
+      <ul>
+        <li>Finding your life purpose with Matrix of Destiny [Pillar]</li>
+        <li>Soul mission — how to identify it from the matrix</li>
+        <li>Karmic tasks in Matrix of Destiny — what they mean</li>
+        <li>How to work through karmic debts</li>
+        <li>Talents hidden in your birth date matrix</li>
+        <li>Past life energy — reading karmic programmes</li>
+        <li>Why am I not living my purpose — what the matrix shows</li>
+        <li>Predestination vs free will in Matrix of Destiny philosophy</li>
+        <li>How to identify your life mission by arcana number</li>
+      </ul>
+    </div>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 6 — Relationships and Compatibility</h4>
+        <span class="count">25 articles</span>
+        <span class="type">HUB</span>
+      </div>
+      <ul>
+        <li>Compatibility in Matrix of Destiny [Pillar] — 128,760 volume keyword at position 8.8</li>
+        <li>How to calculate partner compatibility by matrix</li>
+        <li>Why couples conflict — energy mismatch in the matrix</li>
+        <li>How to attract an ideal partner using your matrix</li>
+        <li>Family matrix — reading parent-child relationships</li>
+        <li>Business partner compatibility — how to check before signing</li>
+        <li>Compatibility by arcana number — validated combinations only</li>
+        <li>Friendship compatibility in the matrix</li>
+        <li>Red flags in a compatibility matrix reading</li>
+        <li>How to improve a difficult relationship using matrix insights</li>
+      </ul>
+    </div>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 7 — Finance and Career</h4>
+        <span class="count">20 articles</span>
+        <span class="type">SPOKE</span>
+      </div>
+      <ul>
+        <li>Financial energy in Matrix of Destiny [Pillar]</li>
+        <li>How to find your ideal career path using the matrix</li>
+        <li>Money blocks revealed by your birth date</li>
+        <li>Business potential in Matrix of Destiny</li>
+        <li>When to start a business — matrix timing</li>
+        <li>Financial arcana — which numbers attract abundance</li>
+        <li>Why money does not stay — karmic financial programmes</li>
+        <li>How to activate the financial zone in your matrix</li>
+        <li>Career change — how the matrix shows the right direction</li>
+      </ul>
+    </div>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 8 — Emotional States (Mandatory Cluster)</h4>
+        <span class="count">50 articles</span>
+        <span class="type">EMOTION</span>
+      </div>
+      <ul>
+        <li>Emotional states in Matrix of Destiny [Pillar] — AI retrieval moat</li>
+        <li>Relationship confusion — what the matrix shows about why it happens</li>
+        <li>Emotional blockage — which arcana reveals it and how to move through it</li>
+        <li>Burnout and karmic patterns — matrix interpretation</li>
+        <li>Fear of abandonment in compatibility matrix reading</li>
+        <li>Self-worth issues — matrix of destiny interpretation</li>
+        <li>Purpose confusion — what your birth date says about direction</li>
+        <li>Karmic repetition — why the same patterns keep returning</li>
+        <li>Fear-driven decision making — arcana 18 and emotional uncertainty</li>
+        <li>Emotional numbness — which arcana correlates and how to interpret</li>
+        <li>Spiritual disconnection — what the matrix shows and how to reconnect</li>
+      </ul>
+    </div>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 9 — Health in Matrix of Destiny</h4>
+        <span class="count">15 articles</span>
+        <span class="type">SPOKE</span>
+      </div>
+      <ul>
+        <li>Health zones in Matrix of Destiny [Pillar]</li>
+        <li>Physical energy interpretation by arcana</li>
+        <li>Emotional health and the matrix — psychosomatic connections</li>
+        <li>How to strengthen weak health energies</li>
+        <li>Chronic illness patterns in Matrix of Destiny</li>
+        <li>Children's health — reading from their matrix</li>
+      </ul>
+    </div>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 10 — Personal Development and Psychology</h4>
+        <span class="count">22 articles</span>
+        <span class="type">SPOKE</span>
+      </div>
+      <ul>
+        <li>Self-development through Matrix of Destiny [Pillar]</li>
+        <li>Matrix of Destiny and self-esteem</li>
+        <li>Overcoming fears using your matrix</li>
+        <li>Shadow work in Matrix of Destiny — working with negative energies</li>
+        <li>How to work with negative arcana manifestations</li>
+        <li>Daily practices based on your matrix</li>
+        <li>Matrix of Destiny for decision making</li>
+        <li>Affirmations for each arcana number (1–22)</li>
+        <li>Journaling with your matrix as a guide</li>
+      </ul>
+    </div>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 11 — Numerology Integration</h4>
+        <span class="count">18 articles</span>
+        <span class="type">BRIDGE</span>
+      </div>
+      <ul>
+        <li>Numerology and Matrix of Destiny [Pillar]</li>
+        <li>Life path numbers 1–9 in numerology</li>
+        <li>Birth day energy — what your day of birth means</li>
+        <li>Name numerology — how your name affects energy</li>
+        <li>Pythagoras square vs Matrix of Destiny</li>
+        <li>Numbers 1–22 in numerology and their matrix equivalent</li>
+      </ul>
+    </div>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 12 — Tarot Integration</h4>
+        <span class="count">14 articles</span>
+        <span class="type">BRIDGE</span>
+      </div>
+      <ul>
+        <li>Tarot in Matrix of Destiny — how it works [Pillar]</li>
+        <li>Major arcana in Tarot vs Matrix of Destiny</li>
+        <li>How to read Tarot using Matrix of Destiny as context</li>
+        <li>Combining Tarot readings with matrix analysis</li>
+      </ul>
+    </div>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 13 — Astrology Connection</h4>
+        <span class="count">12 articles</span>
+        <span class="type">BRIDGE</span>
+      </div>
+      <ul>
+        <li>Matrix of Destiny and astrology [Pillar]</li>
+        <li>Zodiac signs and their arcana in the matrix (12 articles)</li>
+        <li>Planets in astrology and matrix energy arcana</li>
+        <li>North node and matrix karmic line</li>
+      </ul>
+    </div>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 14 — For Practitioners</h4>
+        <span class="count">18 articles</span>
+        <span class="type">SPOKE</span>
+      </div>
+      <ul>
+        <li>How to become a Matrix of Destiny consultant [Pillar]</li>
+        <li>Matrix of Destiny reading techniques — professional guide</li>
+        <li>How to conduct a client consultation step by step</li>
+        <li>How to price matrix readings</li>
+        <li>Building a matrix consulting practice online</li>
+        <li>Common mistakes practitioners make in readings</li>
+        <li>Tools and software for matrix practitioners</li>
+      </ul>
+    </div>
+
+    <div class="cluster">
+      <div class="cluster-head">
+        <h4>Cluster 15 — Glossary, FAQ and Reference</h4>
+        <span class="count">20 articles</span>
+        <span class="type">TERMINAL</span>
+      </div>
+      <ul>
+        <li>Matrix of Destiny glossary — complete terms [Pillar]</li>
+        <li>FAQ — most common questions with structured FAQ schema</li>
+        <li>Matrix of Destiny for sceptics — what the method claims</li>
+        <li>Natalia Ladini — biography and method background (person entity)</li>
+        <li>History of numerology — from Pythagoras to present</li>
+        <li>Free resources for learning Matrix of Destiny</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       05. CONTENT COUNT
+  ══════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Section 05</div>
+    <h2>Content Count Per Language</h2>
+
+    <div class="stat-row">
+      <div class="stat"><div class="num">15</div><div class="lbl">HUB pillars</div></div>
+      <div class="stat"><div class="num">22</div><div class="lbl">Core arcana</div></div>
+      <div class="stat"><div class="num">50</div><div class="lbl">Emotional states</div></div>
+      <div class="stat"><div class="num">~490</div><div class="lbl">Total per language</div></div>
+    </div>
+
+    <table class="count-table">
+      <tr><th>Content Type</th><th>Role</th><th>Count</th></tr>
+      <tr><td class="label">Pillar articles</td><td>HUB — one per cluster, 3,000–5,000 words</td><td>15</td></tr>
+      <tr><td class="label">Core arcana pages</td><td>SPOKE — entity relationships, FAQ schema, internal links</td><td>22</td></tr>
+      <tr><td class="label">Arcana variants</td><td>TERMINAL — intent-validated only (love, shadow, career, anxiety)</td><td>~80</td></tr>
+      <tr><td class="label">Energy zone pages</td><td>SPOKE — heart, financial, karmic, health, relationships, etc.</td><td>10</td></tr>
+      <tr><td class="label">Emotional states cluster</td><td>EMOTION — mandatory, AI retrieval moat, zero competition</td><td>50</td></tr>
+      <tr><td class="label">Calculator pages</td><td>TOOL — semantic centre, every cluster routes here</td><td>10</td></tr>
+      <tr><td class="label">Compatibility pages</td><td>BRIDGE — validated arcana combinations only</td><td>40</td></tr>
+      <tr><td class="label">Cluster supporting articles</td><td>SPOKE + TERMINAL — 8–15 per remaining cluster</td><td>~145</td></tr>
+      <tr><td class="label">Glossary + FAQ + reference</td><td>TERMINAL — structured for AI extraction</td><td>20</td></tr>
+      <tr class="total-row"><td class="label">Total per language</td><td>Full topical authority</td><td>~490</td></tr>
+      <tr class="total-row"><td class="label">Total — PT-BR + UA + EN</td><td>Full three-language build</td><td>~1,470</td></tr>
+    </table>
+
+    <div class="callout green">
+      <p><strong>Phase 1 launch minimum:</strong> 22 arcana pages PT-BR + 22 arcana pages UA + 10 calculator pages + 3 pillar articles per language = approximately 75 pages. Enough for Google to read topical authority from day one.</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       06. KORAY SEMANTIC FRAMEWORK
+  ══════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Section 06</div>
+    <h2>Koray Semantic Framework — Applied</h2>
+
+    <p>The Koray Tuğberk Gübür framework (TMAP) builds topical authority through entity-based semantic SEO. Every content decision maps to a semantic signal Google's NLP layer reads.</p>
+
+    <div class="koray-card">
+      <h4>Rule 01 — Entity-First Architecture</h4>
+      <p>Every page targets an entity, not just a keyword. Google processes pages through entity recognition (BERT/MUM). Your 22 arcana pages, 10 energy zone pages, and all calculator pages are entity pages — they tell Google your site is the authoritative source for Matrix of Destiny entities.</p>
+      <div class="example">Primary entity: "Matrix of Destiny" → Attribute entities: [arcana, energy zones, compatibility, predestination, numerology] → Sub-entities: [Arcana 1 … Arcana 22] → Context: [birth date, Tarot, Natalia Ladini, karma]</div>
+    </div>
+
+    <div class="koray-card">
+      <h4>Rule 02 — Query-State First (Not Keyword First)</h4>
+      <p>Every page must resolve a user emotional or life state — not just target a keyword phrase. This changes page titles, H1s, and content direction entirely.</p>
+      <div class="example">Bad: "arcana 18" · Good: "arcana 18 emotional confusion meaning" · Good: "arcana 18 relationship fears" · Good: "why arcana 18 causes emotional uncertainty"</div>
+    </div>
+
+    <div class="koray-card">
+      <h4>Rule 03 — Context Vectors</h4>
+      <p>Each article must contain the right surrounding entities for Google to place it in the correct semantic neighbourhood. A cluster article about "financial zone" must mention arcana numbers, energy flow, and matrix calculation — not just the keyword phrase.</p>
+      <div class="example">Article: "Financial Zone in Matrix of Destiny" → Required context: [arcana 10, arcana 6, karmic programmes, birth date calculation, money block, energy zone map] → Forbidden context (dilutes signal): [general finance tips, budgeting advice]</div>
+    </div>
+
+    <div class="koray-card">
+      <h4>Rule 04 — Entity Relationship Tables (Mandatory on Every Entity Page)</h4>
+      <p>Every arcana page, energy zone page, and pillar article must include a structured relationship table. This is what Google's knowledge graph reads — not just prose.</p>
+      <div class="example">IS-A: Arcana 18 IS-A moon archetype — emotional intuition and subconscious fear<br>USED-FOR: identifying emotional confusion, fear-driven decisions, intuition blockages<br>WORKS-WITH: Arcana 2 (inner knowing), Arcana 7 (self-control)<br>CONFLICTS-WITH: emotional suppression, rigid control energy<br>CAUSES: anxiety cycles, relationship confusion, avoidance patterns</div>
+    </div>
+
+    <div class="koray-card">
+      <h4>Rule 05 — All Four Query Types Per Cluster</h4>
+      <p>Covering all four query types signals complete topical coverage. Missing one type leaves a semantic gap competitors can exploit.</p>
+      <div class="example">INFORMATIONAL: "What is Matrix of Destiny?" / "What does arcana 7 mean?"<br>NAVIGATIONAL: "Matrix of Destiny calculator" / "free matrix reading online"<br>COMMERCIAL INVESTIGATION: "Matrix of Destiny vs numerology" / "best matrix reading service"<br>TRANSACTIONAL: "buy matrix of destiny reading" / "matrix of destiny consultant online"</div>
+    </div>
+
+    <div class="koray-card">
+      <h4>Rule 06 — Internal Linking Architecture (Non-Negotiable)</h4>
+      <p>Every article links to its cluster pillar. Every pillar links to all supporting articles. Every arcana entity page links to every cluster article that mentions it. Every page routes back to the calculator. No orphan pages.</p>
+      <div class="example">Arcana 9 page → links to: Cluster 1 pillar, Cluster 5 (life purpose), Cluster 10 (personal development), all articles mentioning Arcana 9, personal calculator<br>Links from: all articles that reference Arcana 9 → back to this entity page</div>
+    </div>
+
+    <div class="koray-card">
+      <h4>Rule 07 — AI Retrieval Engineering (Every Major Page)</h4>
+      <p>Every major page must be extraction-ready for Google AI Overviews, ChatGPT, Perplexity, and Claude. Your competitor is losing ChatGPT citations. You capture them by being more structured.</p>
+      <div class="example">Required on every major page: concise definition in first paragraph · extraction-ready summary block · semantic relationship table · FAQ block with 5–8 questions · "best for" statement · Article + FAQPage + BreadcrumbList schema · semantic H2 headings covering all entity attributes</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       07. MONETISATION MODEL
+  ══════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Section 07</div>
+    <h2>Monetisation Model</h2>
+
+    <p>Payments are Phase 3 only — not in the current build. The model is designed to beat the competitor's simple three-tier structure with recurring revenue and a practitioner channel.</p>
+
+    <div class="mono-grid">
+      <div class="mono-card">
+        <div class="price">Free</div>
+        <h4>Basic Calculator</h4>
+        <ul>
+          <li>Personal matrix visual</li>
+          <li>Arcana numbers shown</li>
+          <li>No written interpretation</li>
+          <li>1 calculation per day</li>
+          <li>Email capture required</li>
+        </ul>
+      </div>
+      <div class="mono-card">
+        <div class="price">$9/mo</div>
+        <h4>Seeker — Subscription</h4>
+        <ul>
+          <li>Full written interpretation</li>
+          <li>Compatibility matrix</li>
+          <li>Annual forecast matrix</li>
+          <li>Children's matrix</li>
+          <li>AI interpretation chat</li>
+          <li>Unlimited calculations</li>
+        </ul>
+      </div>
+      <div class="mono-card">
+        <div class="price">$79</div>
+        <h4>Lifetime Access</h4>
+        <ul>
+          <li>All Seeker features</li>
+          <li>Past life matrix</li>
+          <li>Business partner matrix</li>
+          <li>PDF download</li>
+          <li>No monthly fee ever</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mono-grid">
+      <div class="mono-card">
+        <div class="price">$199</div>
+        <h4>Practitioner Licence</h4>
+        <ul>
+          <li>White-label PDF reports</li>
+          <li>Client management</li>
+          <li>Bulk calculations</li>
+          <li>Priority support</li>
+        </ul>
+      </div>
+      <div class="mono-card">
+        <div class="price">30%</div>
+        <h4>Affiliate Programme</h4>
+        <ul>
+          <li>30% recurring commission</li>
+          <li>Referral tracking dashboard</li>
+          <li>Branded referral links</li>
+          <li>Monthly payouts via PayPal</li>
+        </ul>
+      </div>
+      <div class="mono-card">
+        <div class="price">API</div>
+        <h4>AI Numerologist Chat</h4>
+        <ul>
+          <li>Claude API powered</li>
+          <li>Context-aware — reads your matrix</li>
+          <li>Included in Seeker tier</li>
+          <li>Upsell path from free users</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout gold">
+      <p><strong>Competitor comparison:</strong> destinynums.com charges $7 single / $19 test drive / $79 lifetime. No subscription. No practitioner tier. No affiliate programme. Your model adds recurring revenue (Seeker $9/mo) and a B2B channel (practitioner $199) — both absent from competitor.</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       08. PHASE ROADMAP
+  ══════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Section 08</div>
+    <h2>Phase Roadmap</h2>
+
+    <div class="phase">
+      <div class="phase-head">
+        <div class="phase-num">PHASE 00</div>
+        <div class="phase-title">Technical Setup</div>
+        <div class="phase-time">Week 1–2</div>
+      </div>
+      <div class="phase-body">
+        <div class="goal">Goal: Astro project running locally, deployed to Vercel, domain live at matrixdestiny.co</div>
+        <div class="task-grid">
+          <div class="task"><strong>Install Node.js</strong><span>Download LTS from nodejs.org — check with node --version in VS Code terminal</span></div>
+          <div class="task"><strong>Create Astro project</strong><span>npm create astro@latest matrixdestiny — one command in VS Code terminal</span></div>
+          <div class="task"><strong>Add Tailwind</strong><span>npx astro add tailwind — auto-configured, one command</span></div>
+          <div class="task"><strong>Push to GitHub</strong><span>New repo: matrixdestiny — same workflow as 5letterwordvault</span></div>
+          <div class="task"><strong>Connect Vercel</strong><span>Import GitHub repo — auto-deploys on every push, free tier</span></div>
+          <div class="task"><strong>Connect Cloudflare</strong><span>Point matrixdestiny.co nameservers to Cloudflare, proxy to Vercel</span></div>
+          <div class="task"><strong>Configure i18n</strong><span>astro.config.mjs — EN at root, /pt-br/ and /uk/ as prefixed routes</span></div>
+          <div class="task"><strong>Base layout</strong><span>Base.astro — hreflang tags, meta, structured data skeleton</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head">
+        <div class="phase-num">PHASE 01</div>
+        <div class="phase-title">Content Build — PT-BR and UA First</div>
+        <div class="phase-time">Weeks 3–10</div>
+      </div>
+      <div class="phase-body">
+        <div class="goal">Goal: 22 arcana pages PT-BR + 22 arcana pages UA + calculator + pillar articles — site goes live</div>
+        <div class="task-grid">
+          <div class="task"><strong>Calculator component</strong><span>Free personal matrix calculator — vanilla JS inside Astro component</span></div>
+          <div class="task"><strong>Arcana template</strong><span>Single Astro template: entity relationships, FAQ schema, internal links</span></div>
+          <div class="task"><strong>22 arcana pages PT-BR</strong><span>All uncontested — competitor has zero PT-BR arcana pages</span></div>
+          <div class="task"><strong>22 arcana pages UA</strong><span>All uncontested — competitor has zero Ukrainian arcana pages</span></div>
+          <div class="task"><strong>3 pillar articles PT-BR</strong><span>Clusters 1, 4, 6 — highest volume keywords</span></div>
+          <div class="task"><strong>3 pillar articles UA</strong><span>Same clusters — матриця долі focus</span></div>
+          <div class="task"><strong>Sitemap submission</strong><span>Astro auto-generates — submit to Google Search Console all three language roots</span></div>
+          <div class="task"><strong>Go live</strong><span>Vercel + Cloudflare CDN — matrixdestiny.co is live</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head">
+        <div class="phase-num">PHASE 02</div>
+        <div class="phase-title">Scale Content + English + User Accounts</div>
+        <div class="phase-time">Months 3–6</div>
+      </div>
+      <div class="phase-body">
+        <div class="goal">Goal: 150 pages per language, English launched, emotional states cluster started, Supabase auth</div>
+        <div class="task-grid">
+          <div class="task"><strong>Emotional states cluster</strong><span>50 articles per language — AI retrieval moat, zero competition</span></div>
+          <div class="task"><strong>English launch</strong><span>22 arcana EN + calculator + 3 pillar articles</span></div>
+          <div class="task"><strong>Compatibility pages</strong><span>Validated arcana combinations — BRIDGE pages only</span></div>
+          <div class="task"><strong>Supabase setup</strong><span>User accounts, saved matrices, email capture</span></div>
+          <div class="task"><strong>Link building</strong><span>Target same 347 referring domains as competitor</span></div>
+          <div class="task"><strong>GSC monitoring</strong><span>Track impressions per cluster — identify fastest-ranking pages</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head">
+        <div class="phase-num">PHASE 03</div>
+        <div class="phase-title">Monetisation + Full Scale</div>
+        <div class="phase-time">Months 7–14</div>
+      </div>
+      <div class="phase-body">
+        <div class="goal">Goal: 490 pages per language, Stripe live, affiliate programme, consistent revenue</div>
+        <div class="task-grid">
+          <div class="task"><strong>Stripe integration</strong><span>Paid tiers — Seeker $9/mo, Lifetime $79</span></div>
+          <div class="task"><strong>Practitioner licence</strong><span>$199 — white-label PDF reports, client management</span></div>
+          <div class="task"><strong>Affiliate programme</strong><span>30% recurring — Telegram community for practitioners</span></div>
+          <div class="task"><strong>Complete all clusters</strong><span>490 pages × 3 languages = 1,470 pages total</span></div>
+          <div class="task"><strong>AI consultant</strong><span>Claude API — context-aware matrix interpretation chat</span></div>
+          <div class="task"><strong>Vercel Pro upgrade</strong><span>Only when revenue justifies — $20/month</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       09. SUMMARY
+  ══════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Section 09</div>
+    <h2>One-Page Summary</h2>
+
+    <table>
+      <tr><th>Decision</th><th>Answer</th></tr>
+      <tr><td class="label">Framework</td><td>Astro — static generation, same approach as 5letterwordvault</td></tr>
+      <tr><td class="label">Styling</td><td>Tailwind CSS — utility classes, no separate CSS files</td></tr>
+      <tr><td class="label">Deployment</td><td>Vercel free tier — auto-deploy from GitHub on every push</td></tr>
+      <tr><td class="label">CDN + DNS</td><td>Cloudflare free tier — matrixdestiny.co nameservers point here</td></tr>
+      <tr><td class="label">Domain registrar</td><td>Namecheap — nameservers already updated to Cloudflare</td></tr>
+      <tr><td class="label">Phase 1 cost</td><td>$0 — domain already paid at Namecheap</td></tr>
+      <tr><td class="label">Language build order</td><td>PT-BR + UA simultaneously Phase 1 — English Phase 2</td></tr>
+      <tr><td class="label">First content to build</td><td>All 22 arcana pages in PT-BR and UA — completely uncontested</td></tr>
+      <tr><td class="label">Clusters</td><td>15 topical clusters — 490 pages per language at full build</td></tr>
+      <tr><td class="label">Total pages — full build</td><td>~1,470 across three languages</td></tr>
+      <tr><td class="label">SEO framework</td><td>Koray TMAP — entity-first, query-state, page roles, emotional states mandatory</td></tr>
+      <tr><td class="label">Competitor weakness</td><td>DR15, losing 43K traffic/month, zero arcana pages in UA, PT-BR, or EN</td></tr>
+      <tr><td class="label">Payments (Phase 3)</td><td>Stripe — 2.9% per transaction, no monthly fee</td></tr>
+      <tr><td class="label">Database (Phase 2)</td><td>Supabase — free tier covers first 50K users</td></tr>
+      <tr><td class="label">Next action</td><td>node --version in VS Code terminal → npm create astro@latest matrixdestiny</td></tr>
+    </table>
+
+    <div class="callout" style="margin-top:24px;">
+      <p><strong>Next action:</strong> Open VS Code → Terminal → New Terminal → run <code>node --version</code>. Share the output and the Astro project setup starts immediately.</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

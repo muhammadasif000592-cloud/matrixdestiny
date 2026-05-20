@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from 'astro:content';
+import Arcana from '../../layouts/Arcana.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('arcana', ({ id }) => id.startsWith('en/'));
+  return entries.map((entry) => ({
+    params: { slug: entry.id.replace('en/', '').replace(/\.md$/, '') },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { number, name, title, description, relationships, faq } = entry.data;
+
+const hreflang = [
+  { lang: 'en', url: `https://matrixdestiny.co/arcana/${number}` },
+  { lang: 'pt-BR', url: `https://matrixdestiny.co/pt-br/arcana/${number}` },
+  { lang: 'uk', url: `https://matrixdestiny.co/uk/arcana/${number}` },
+];
+---
+
+<Arcana
+  number={number}
+  name={name}
+  title={title}
+  description={description}
+  lang="en"
+  relationships={relationships}
+  faq={faq}
+  canonicalUrl={`https://matrixdestiny.co/arcana/${number}`}
+  hreflang={hreflang}
+>
+  <Content />
+</Arcana>

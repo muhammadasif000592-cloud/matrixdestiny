@@ -1,0 +1,29 @@
+# Content Quality Rules — matrixdestiny.co
+
+## Word counts
+- Arcana entity pages: 1,500 minimum, 2,000 target
+- Pillar HUB articles: 2,500 minimum, 3,500 target
+- Emotional state articles: 1,200 minimum, 1,800 target
+- FAQ and terminal pages: 800 minimum
+
+## Zero tolerance
+- No mystical fluff
+- No vague spiritual language
+- No filler phrases: "it is important to note", "in conclusion", "this powerful archetype", "deeply transformative", "cosmic energy", "universal vibration"
+- No generic polarity: never "positive" or "negative" without behavioral mechanism
+- No thin FAQ answers: minimum 4 sentences each
+- No repetition across sections
+
+## Required on every arcana page
+- Specific behavioral mechanism for every claim
+- Concrete psychological scenarios: conflict avoidance, emotional withdrawal, control struggles, dependency loops, idealization patterns
+- Active vs blocked section with 4 behavioral examples each
+- Three life domains: professional, relationships, karmic pattern
+- Entity relationship table: IS-A, USED-FOR, WORKS-WITH, CONFLICTS-WITH, CAUSES
+- FAQ block: 5 questions minimum
+
+## Review process
+- Build one page as sample
+- Stop and wait for approval
+- Do not build remaining pages until sample is approved
+- Do not commit or push until approval given
