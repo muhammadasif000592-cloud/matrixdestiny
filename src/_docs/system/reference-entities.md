@@ -76,6 +76,54 @@ Reference qualities:
 
 ---
 
+## Arcana 15 — The Devil
+Status: Canonical Generation-2 Reference Entity
+
+Validated: EN, PT-BR, UK
+
+Protected ontology:
+- unconscious compulsion
+- autonomous complex
+- the function served by compulsive patterns
+- compulsion pole / binding pole
+- awareness without traction
+- delivery mechanism
+
+Forbidden bleed:
+- anxiety / fear projection (Moon)
+- emotional regulation / intensity (Temperance)
+- consequence accountability (Justice)
+- weakness framing
+- evil/sin/demonic language
+- moral judgment framing
+
+---
+
+## Arcana 16 — The Tower
+Status: Canonical Generation-2 Reference Entity
+
+Validated: EN
+
+Protected ontology:
+- structural disclosure through collapse
+- false certainty destruction
+- forced reorganization
+- collapse as information
+- calibration between genuine failure and ordinary disruption
+- collapse-resistance pole
+- catastrophizing pole
+
+Forbidden content:
+- apocalyptic language
+- fatalism or punishment framing
+- "everything destroyed" dramatic ruin aesthetics
+- collapse as random bad luck
+
+worksWith: [13, 17, 20]
+conflictsWith: [4, 5]
+
+---
+
 ## How to use this file
 
 Before writing any arcana page:
