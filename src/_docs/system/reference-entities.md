@@ -102,7 +102,7 @@ Forbidden bleed:
 ## Arcana 16 — The Tower
 Status: Canonical Generation-2 Reference Entity
 
-Validated: EN
+Validated: EN, PT-BR, UK
 
 Protected ontology:
 - structural disclosure through collapse
@@ -116,7 +116,7 @@ Protected ontology:
 Forbidden content:
 - apocalyptic language
 - fatalism or punishment framing
-- "everything destroyed" dramatic ruin aesthetics
+- dramatic ruin aesthetics
 - collapse as random bad luck
 
 worksWith: [13, 17, 20]
