@@ -99,6 +99,27 @@ These are the groupings most likely to produce content bleed. Each cluster share
 
 ---
 
+## Arcana 18 — Moon Governance Blacklist
+
+Moon governs ONLY:
+- how ambiguous information becomes perceptual reality
+- fear-generated gap-filling
+- the collapse between interpretation and perception
+- projection pole / dissociation pole under ambiguity
+
+Moon does NOT govern — these belong to other archetypes:
+- emotional flooding → Arcana 14 Temperance
+- compulsive attachment → Arcana 15 Devil
+- social withdrawal → Arcana 9 Hermit
+- consequence accountability → Arcana 11 Justice
+- power calibration → Arcana 8 Strength
+- will paralysis → Arcana 12 Hanged Man
+- structural collapse → Arcana 16 Tower
+
+Any content about hypervigilance, overthinking, anxiety, or uncertainty must stay anchored to the perceptual formation mechanism — not drift into emotional regulation, compulsion, or withdrawal territory.
+
+---
+
 ### Cluster G: The Solitude / Suspension Pair
 
 | Arcana | Governs | Does NOT Govern |

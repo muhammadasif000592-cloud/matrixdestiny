@@ -124,6 +124,41 @@ conflictsWith: [4, 5]
 
 ---
 
+## Arcana 18 — The Moon
+Status: Canonical Generation-2 Reference Entity
+
+Validated: EN
+
+Protected ontology:
+- perceptual accuracy under ambiguity
+- fear-filled gap-filling
+- anxiety-driven interpretation
+- projection pole / dissociation pole
+- signal vs noise distinction
+- accurate-map-wrong-territory karmic origin
+
+Forbidden content:
+- mystical language (lunar energy, psychic sensitivity, veil between worlds)
+- "sensitivity" as positive trait framing
+- illusion, fog, feminine mystery clichés
+- dream symbolism
+- generic anxiety prose
+- psychic ability framing
+
+Key distinction from High Priestess (2):
+- High Priestess = accurate signal from depth
+- Moon = fear-generated noise that mimics signal
+- Both produce strong internal certainty — only the source differs
+
+Key distinction from Devil (15):
+- Devil = compulsion: "I can't stop"
+- Moon = distorted perception: "I can't see clearly"
+
+worksWith: [2, 9, 12]
+conflictsWith: [11, 19]
+
+---
+
 ## How to use this file
 
 Before writing any arcana page:

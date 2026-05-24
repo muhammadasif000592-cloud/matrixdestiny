@@ -125,6 +125,20 @@ These patterns produce semantic stiffness. They are the Generation 2 equivalents
 
 ---
 
+### 5. Syntactic uniformity warning
+
+The following phrase structures are becoming Generation 2 defaults. Use maximum once per file, not as opening anchors:
+- "the mechanism by which..."
+- "the process through which..."
+- "the specific point where..."
+- "the capacity to..."
+- "the template stays active"
+- "the original conditions no longer exist"
+
+Each arcana must find its own opening rhythm.
+
+---
+
 ## Section 4 — Stylistic Diversification Rules
 
 Each arcana must have a distinct opening rhythm, pull quote style, and FAQ register. If two pages feel like they were written by the same writer on the same day, audit for structural similarity.
