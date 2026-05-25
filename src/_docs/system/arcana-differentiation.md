@@ -146,6 +146,36 @@ is still developmentally productive — and moving when it is not.
 
 ---
 
+## Arcana 13 — Death Governance Blacklist
+
+Arcana 13 governs ONLY:
+- irreversible identity discontinuity
+- genuine ending — the structure cannot resume in prior form
+- completion threshold — the point at which continuation is no longer structurally available
+- closure as required developmental operation
+- identity reorganization after irreversible termination
+
+Arcana 13 does NOT govern:
+- suspension before reorientation → Arcana 12 Hanged Man
+- structural collapse revelation → Arcana 16 Tower
+- grief itself — grief is appropriate response, not the archetype
+- compulsive attachment → Arcana 15 Devil
+- ambiguity processing → Arcana 18 Moon
+- emotional overwhelm → Arcana 14 Temperance
+- symbolic rebirth or what comes after — post-13 integration is not the archetype
+- "phoenix", "ego death", "metamorphosis", "new beginnings", "shedding old selves"
+
+Anti-romanticization rule:
+Death governs termination — not what comes after.
+Romantic transformation language belongs to post-13 integration processes.
+Keep the archetype at the ending itself.
+
+Key distinction from Hanged Man (12):
+- 12: movement pauses, framework reorganizes, continuity remains possible
+- 13: continuity itself terminates — return to prior form is no longer structurally available
+
+---
+
 ### Cluster G: The Solitude / Suspension Pair
 
 | Arcana | Governs | Does NOT Govern |

@@ -159,6 +159,37 @@ conflictsWith: [11, 19]
 
 ---
 
+## Arcana 13 — Death
+Status: Canonical Generation-2 Reference Entity
+
+Validated: EN
+
+Protected ontology:
+- irreversible identity discontinuity
+- genuine ending — structure cannot resume in prior form
+- completion threshold
+- extension pole: investing in continuation past termination
+- premature severance pole: ending before developmental completion
+- closure as required operation
+
+Forbidden content:
+- phoenix, rebirth, ego death, metamorphosis, new beginnings
+- romantic transformation aesthetics
+- grief conflated with the archetype
+- fatalism or punishment framing
+- shedding old selves language
+
+Key distinctions:
+- Hanged Man (12): suspension before reorientation vs irreversible termination
+- Tower (16): collapse announces ending vs ending arrives without external crisis
+- Arcana 22: fear of what follows vs the ending itself
+- Grief: emotional response vs structural termination — these are separate
+
+worksWith: [12, 16, 20]
+conflictsWith: [2, 6]
+
+---
+
 ## Arcana 12 — The Hanged Man
 Status: Canonical Generation-2 Reference Entity
 
