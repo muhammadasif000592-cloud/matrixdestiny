@@ -120,6 +120,32 @@ Any content about hypervigilance, overthinking, anxiety, or uncertainty must sta
 
 ---
 
+## Arcana 12 — Hanged Man Governance Blacklist
+
+Arcana 12 governs ONLY:
+- developmental suspension
+- perspective inversion through enforced pause
+- transitional non-movement
+- framework invalidation before reorientation
+- temporally bounded pause before genuine direction shift
+
+Arcana 12 does NOT govern:
+- emotional flooding → Arcana 14 Temperance
+- perceptual distortion under ambiguity → Arcana 18 Moon
+- compulsive attachment → Arcana 15 Devil
+- chosen renewable solitude → Arcana 9 Hermit
+- irreversible identity ending → Arcana 13 Death
+- structural collapse → Arcana 16 Tower
+- generalized fear or anxiety → Arcana 18 Moon
+- initiative failure or willpower → Arcana 1 Magician
+
+Anti-romanticization rule:
+Hanged Man is NOT "stillness is wisdom."
+The active form is correctly identifying whether suspension
+is still developmentally productive — and moving when it is not.
+
+---
+
 ### Cluster G: The Solitude / Suspension Pair
 
 | Arcana | Governs | Does NOT Govern |

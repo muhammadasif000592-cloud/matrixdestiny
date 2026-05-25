@@ -159,6 +159,38 @@ conflictsWith: [11, 19]
 
 ---
 
+## Arcana 12 — The Hanged Man
+Status: Canonical Generation-2 Reference Entity
+
+Validated: EN, PT-BR, UK
+
+Protected ontology:
+- developmental suspension
+- perspective inversion through enforced pause
+- transitional non-movement
+- framework invalidation before reorientation
+- avoidance pole / stagnation pole
+- "резиденція замість транзиту" (residence instead of transit)
+
+Forbidden content:
+- martyrdom / sacrifice / victim framing
+- paralysis language
+- "stillness is wisdom" romanticization
+- passivity as virtue
+
+Forbidden bleed:
+- irreversible ending (Death, 13)
+- structural collapse (Tower, 16)
+- chosen renewable solitude (Hermit, 9)
+- emotional regulation during suspension (Temperance, 14)
+- perceptual distortion (Moon, 18)
+- compulsive patterns (Devil, 15)
+
+worksWith: [2, 9, 17]
+conflictsWith: [1, 7]
+
+---
+
 ## How to use this file
 
 Before writing any arcana page:

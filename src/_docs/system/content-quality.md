@@ -82,3 +82,25 @@ Every psychological claim must include a behavioral mechanism — the specific a
 > "Arcana 1 blocked causes dependence on external validation — the person knows what they want but postpones action until someone more 'experienced' confirms the choice."
 
 If you cannot name the behavioral mechanism, the claim is not ready to publish.
+
+## Retrieval Engineering — Rule 40 Archetype Adaptation
+
+All arcana pages must comply with rule-40-archetype-adaptation.md.
+Reference before writing any new arcana content.
+
+Key rules:
+- 40A: Each archetype governs a distinct mechanism — no overlap
+- 40B: Mechanism-first writing only
+- 40C: Explicit boundary differentiation from adjacent archetypes
+- 40D: Every concept connects to observable behavior
+- 40E: Developmental causality — why the mechanism formed
+- 40F: Extraction-ready definition blocks
+- 40G: Deterministic operational language
+- 40H: Chunk independence — each section readable standalone
+- 40I: No low-information paragraphs
+- 40J: Retrieval matrices for high-value archetypes
+- 40K: Query-state targeting
+- 40L: Lexical territory governance
+- 40M: Syntactic diversity enforcement
+- 40N: Multilingual ontology consistency
+- 40O: Symbolic system stability
